@@ -1,0 +1,15 @@
+.row {
+	display: flex;
+	flex-wrap: wrap;
+}
+.row.baseline {
+	align-items: baseline;
+}
+
+button { cursor: pointer; }
+button:hover {
+  filter: brightness(1.1);
+}
+button:active {
+  filter: brightness(0.8);
+}

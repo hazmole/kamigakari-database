@@ -1,0 +1,78 @@
+:root {
+  --color-titleBack: #4A593D;
+  --color-ContentBack: #D9CD90;
+  
+  --color-Black: #1C1C1C;
+  --color-Gray-darker:  #404040;
+  --color-Gray-lighter: #979797;
+  --color-Green: #4A593D;
+  --color-lightBrown: #a39382;
+}
+
+@font-face {
+  font-family: "HanyiSenty";
+  src: url("../fonts/HanyiSentyFoundation.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*==============
+ * Frame */
+body {
+  margin: 0;
+  box-sizing: border-box;
+}
+h1 {
+  font-family: "HanyiSenty";
+  font-size: 64px;
+  font-weight: normal;
+  text-shadow: 0.1em 0.1em 0em black;
+  background-color: var(--color-titleBack);
+  color: white;
+  position: relative;
+  margin-bottom: 0;
+  height: 85px;
+}
+
+/*==============
+ * Frame */
+#FrameOuter {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#FrameNavbar {
+  display: flex;
+  flex-direction: column;
+  background: var(--color-Black);
+  width: 160px;
+  height: calc(100vh - 85px);
+}
+#FrameContent { 
+  background: var(--color-ContentBack);
+  width: calc(100% - 160px);
+  height: calc(100vh - 85px);
+  overflow-y: auto;
+}
+#FrameContentHeader { 
+  background: var(--color-Black);
+  padding: 10px 10px;
+  min-height: 32px;
+}
+
+/*==============
+ * NavBar Object */
+#FrameNavbarInner {
+  padding: 10px 10px;
+}
+#FrameNavbarInner a { text-decoration: none; }
+#FrameNavbarInner .navitem {
+  text-align: center;
+  padding: 5px 20px;
+  margin-bottom: 10px;
+  color: white;
+  background: var(--color-Gray-darker);
+}
+#FrameNavbarInner .navitem:hover {
+  background: var(--color-Gray-lighter);
+}

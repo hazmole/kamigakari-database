@@ -1,0 +1,105 @@
+/* Basic Item Frame */
+.Item {
+	border: 5px groove #ccc;
+	background-color: white;
+	color: black;
+	/*border-radius: .5rem;*/
+	margin: 5px;
+	font-size: 14px;
+
+	animation: appear .8s ease-in-out;
+}
+
+.ItemHeader {
+	display: flex;
+	background-color: black;
+	font-size: 16px;
+	color: white;
+}
+
+.rowTitle {
+	width: 100%;
+	padding: 2px 5px;
+	background: #666666;
+	color: white;
+	font-weight: bold;
+}
+.rowField {
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+}
+.rowField:not(:last-child) .title { margin-bottom: 1px;}
+.rowField:not(:last-child) .tags { margin-bottom: 1px;}
+
+.rowField .title {
+	width: 70px;
+
+	background-color: #bdbdbd;
+	text-align: center;
+	font-weight: normal;
+}
+.rowField .title { padding: 2px 0px; }
+.rowField .value { padding: 2px 5px; }
+.rowField .value.Short { width: 50px; }
+.rowField .value.Long  { width: 120px; }
+
+.rowField .title.green { background: #294629; color: #dee7e1; }
+.rowField .title.purple { background: #502885; color: #dee7e1; }
+.rowField .title.red { background: #7a1010; color: #dee7e1; }
+.rowField .title.blue { background: #26397e; color: #dee7e1; }
+
+
+/* Enemy Custom */
+.Enemy-Item {
+	max-width: 1000px;
+}
+.Enemy-Level {
+	padding: 5px 5px 0 5px;
+	width: 34px;
+	background-color: #2a305a;
+	color: #bebfbb;
+}
+.Enemy-Type {
+	width: 20px;
+	padding: 3px;
+	background-color: #2a305a;
+}
+.Enemy-Type.humanoid::after { content: url("../img/person.svg"); }
+.Enemy-Type.beast::after { content: url("../img/wolf-head.svg"); }
+.Enemy-Type.insect::after { content: url("../img/scarab-beetle.svg"); }
+.Enemy-Type.machine::after { content: url("../img/robot-grab.svg"); }
+.Enemy-Type.plant::after { content: url("../img/sprout.svg"); }
+.Enemy-Type.undead::after { content: url("../img/chewed-skull.svg"); }
+.Enemy-Type.eudemon::after { content: url("../img/spiked-dragon-head.svg"); }
+.Enemy-Type.demon::after { content: url("../img/curled-tentacle.svg"); }
+.Enemy-Name {
+	padding: 3px 0;
+	margin: 0 10px;
+	background-color: black;
+}
+
+.Enemy-Infos { width: 260px; }
+.Enemy-States { width: 130px; }
+.Enemy-Rewards { width: /*calc(100% - 480px)*/100%; min-width: 300px; }
+.Enemy-Actions { width: /*100%*/calc(100% - 260px); min-width: 300px; border-top: 1px solid #666666; }
+
+
+/*.rowField.talent:not(:last-child) { border-bottom: 1px solid #c5c5c5; }*/
+.rowField.talent { border-bottom: 1px solid #c5c5c5; }
+.rowField.talent .title { width: 120px; background: #bdbdbd; }
+.rowField.talent .tags { display: flex; }
+.rowField.talent .value { width: 100%; }
+
+.rowField.talent .tags .tag { padding: 2px 5px; margin: 0 0 0 2px; background: #e1e1e0; }
+
+
+.rewardEntry { 
+	display: flex;
+	align-items: baseline;
+	flex-wrap: wrap;
+	width: 100%;
+	border-bottom: 1px solid #c5c5c5;
+}
+.rewardEntry .range { width: 40px; text-align: center; background: #ddd; padding:3px 2px; }
+.rewardEntry .content { padding: 0px 5px;}
