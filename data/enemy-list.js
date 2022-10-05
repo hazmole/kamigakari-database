@@ -1,9 +1,6 @@
 var ENEMY_LIST = [
 	{
-		name: "斷片的囚徒",
-		isGroup: true, groupNumber: 5,
-		level: 1,
-		type: "humanoid",
+		level:1, type:"humanoid", name:"斷片的囚徒", isGroup:true, groupNumber:5, 
 		source: "basic",
 		info: {
 			repu: 9,
@@ -37,10 +34,7 @@ var ENEMY_LIST = [
 		],
 	},
 	{
-		name: "特殊警衛",
-		isGroup: false, groupNumber: 0,
-		level: 2,
-		type: "humanoid",
+		level:2, type:"humanoid", name:"特殊警衛", isGroup:false, groupNumber:0,
 		source: "basic",
 		info: {
 			repu: 8,
@@ -75,10 +69,7 @@ var ENEMY_LIST = [
 		],
 	},
 	{
-		name: "魍鬼",
-		isGroup: true, groupNumber: 10,
-		level: 1,
-		type: "beast",
+		level:1, type:"beast", name:"魍鬼", isGroup:true, groupNumber:10,
 		source: "basic",
 		info: {
 			repu: 8,
@@ -114,10 +105,7 @@ var ENEMY_LIST = [
 	},
 
 	{
-		name: "吸血飛蟲",
-		isGroup: true, groupNumber: 10,
-		level: 1,
-		type: "insect",
+		level:1, type:"insect", name:"吸血飛蟲", isGroup:true, groupNumber:10,
 		source: "basic",
 		info: {
 			repu: 9,
@@ -152,10 +140,7 @@ var ENEMY_LIST = [
 		],
 	},
 	{
-		name: "殺手娃娃",
-		isGroup: true, groupNumber: 5,
-		level: 1,
-		type: "machine",
+		level:1, type:"machine", name:"殺手娃娃", isGroup:true, groupNumber:5,
 		source: "basic",
 		info: {
 			repu: 9,
@@ -190,10 +175,7 @@ var ENEMY_LIST = [
 		],
 	},
 	{
-		name: "地精",
-		isGroup: true, groupNumber: 3,
-		level: 1,
-		type: "plant",
+		level:1, type:"plant", name:"地精", isGroup:true, groupNumber:3,
 		source: "basic",
 		info: {
 			repu: 12,
@@ -228,10 +210,7 @@ var ENEMY_LIST = [
 		],
 	},
 	{
-		name: "屍人",
-		isGroup: true, groupNumber: 3,
-		level: 1,
-		type: "undead",
+		level:1, type:"undead", name:"屍人", isGroup:true, groupNumber:3,
 		source: "basic",
 		info: {
 			repu: 10,
@@ -266,10 +245,7 @@ var ENEMY_LIST = [
 		],
 	},
 	{
-		name: "拉塔托斯卡",
-		isGroup: false,
-		level: 1,
-		type: "eudemon",
+		level:1, type:"eudemon", name:"拉塔托斯卡", isGroup:false, groupNumber:0,
 		source: "basic",
 		info: {
 			repu: 13,
@@ -304,10 +280,7 @@ var ENEMY_LIST = [
 		],
 	},
 	{
-		name: "惡靈",
-		isGroup: false,
-		level: 1,
-		type: "demon",
+		level:1, type:"demon", name:"惡靈", isGroup:false, groupNumber:0,
 		source: "basic",
 		info: {
 			repu: 11,

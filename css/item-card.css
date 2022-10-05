@@ -1,4 +1,5 @@
 /* Basic Item Frame */
+
 .Item {
 	border: 5px groove #ccc;
 	background-color: white;
@@ -53,9 +54,10 @@
 /* Enemy Custom */
 .Enemy-Item {
 	max-width: 1000px;
+	min-width: 350px;
 }
 .Enemy-Level {
-	padding: 5px 5px 0 5px;
+	padding: 5px 7px 0 3px;
 	width: 34px;
 	background-color: #2a305a;
 	color: #bebfbb;
@@ -81,8 +83,8 @@
 
 .Enemy-Infos { width: 260px; }
 .Enemy-States { width: 130px; }
-.Enemy-Rewards { width: /*calc(100% - 480px)*/100%; min-width: 300px; }
-.Enemy-Actions { width: /*100%*/calc(100% - 260px); min-width: 300px; border-top: 1px solid #666666; }
+.Enemy-Rewards { width: 100%; min-width: 300px; }
+.Enemy-Actions { width: 100%; min-width: 300px; border-top: 1px solid #666666; }
 
 
 /*.rowField.talent:not(:last-child) { border-bottom: 1px solid #c5c5c5; }*/
@@ -91,15 +93,15 @@
 .rowField.talent .tags { display: flex; }
 .rowField.talent .value { width: 100%; }
 
-.rowField.talent .tags .tag { padding: 2px 5px; margin: 0 0 0 2px; background: #e1e1e0; }
+.rowField.talent .tags .tag { padding: 2px 5px; margin: 0 0 0 2px; background: #e1e1e0; font-size: 12px; }
 
 
 .rewardEntry { 
 	display: flex;
-	align-items: baseline;
+	align-items: center;
 	flex-wrap: wrap;
 	width: 100%;
 	border-bottom: 1px solid #c5c5c5;
 }
-.rewardEntry .range { width: 40px; text-align: center; background: #ddd; padding:3px 2px; }
+.rewardEntry .range { width: 45px; text-align: center; background: #ddd; padding:3px 2px; }
 .rewardEntry .content { padding: 0px 5px;}

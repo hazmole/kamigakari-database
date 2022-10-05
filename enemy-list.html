@@ -28,6 +28,14 @@
 				simple: { fields:['name'] },
 				advanced: [
 					{
+						field: 'level',
+						title: '等級',
+						type: 'dual-range',
+						config: {
+							min: 1, max: 30, step: 1,
+						}
+					},
+					{
 						field: 'type',
 						title: '種別',
 						type: 'selection',
@@ -40,6 +48,38 @@
 							{ text: '不死', value: 'undead' },
 							{ text: '幻獸', value: 'eudemon' },
 							{ text: '混沌', value: 'demon' },
+						],
+					},
+					{
+						field: 'info.int',
+						title: '智能',
+						type: 'selection',
+						options: [
+							{ text: '低', value: 'low' },
+							{ text: '普通', value: 'normal' },
+							{ text: '高', value: 'high' },
+							{ text: '狡猾', value: 'cunning' },
+						],
+					},
+					{
+						field: 'info.sense',
+						title: '感官',
+						type: 'selection',
+						options: [
+							{ text: '普通', value: 'normal' },
+							{ text: '熱', value: 'heat' },
+							{ text: '魔力', value: 'magic' },
+							{ text: '領域', value: 'field' },
+						],
+					},
+					{
+						field: 'info.movement',
+						title: '移動方式',
+						type: 'selection',
+						options: [
+							{ text: '步行', value: 'walk' },
+							{ text: '飛行', value: 'fly' },
+							{ text: '水中', value: 'swim' },
 						],
 					},
 					{

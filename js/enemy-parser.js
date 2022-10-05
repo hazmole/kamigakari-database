@@ -77,7 +77,8 @@ function parseEnemy(obj){
 		return obj.info?.movement? obj.info.movement.map( m => Util.EnemyMovement[m] ).join(", "): "";
 	}
 	function getWeakness(){
-		return obj.info?.weakness? obj.info.weakness.map( w => Util.Elemental[w] ).join(", "): "";
+		if(!obj.info?.weakness || obj.info.weakness.length==0) return "無";
+		return obj.info.weakness.map( w => Util.Elemental[w] ).join(", ");
 	}
 	function getState(key){
 		if(!obj.states || obj.states[key]==null) return "-";
@@ -89,6 +90,7 @@ function parseEnemy(obj){
 	}
 	function getMoveSpeed(){
 		if(!obj.states || obj.states["speed"]==null) return "-";
+		if(obj.states["move_speed"]) return obj.states["move_speed"];
 		return Math.ceil((parseInt(obj.states["speed"])+5)/3);
 	}
 	function getActions(){
@@ -111,13 +113,17 @@ function parseEnemy(obj){
 	function getRewardEntry( rewardObj ){
 		var lowerRange = rewardObj.range[0];
 		var upperRange = rewardObj.range[1]? rewardObj.range[1]: "";
+		var rewardRange = `${lowerRange} ~ ${upperRange}`;
+		if(lowerRange=='auto'){
+			rewardRange = '自動'
+		}
 		var rewardContent = "無";
 		if(rewardObj.content!=""){
 			var cost = rewardObj.cost? rewardObj.cost: (rewardObj.value*500);
 			rewardContent = `${rewardObj.content} ／ ${rewardObj.effect}：${cost}G （效果值:${rewardObj.value}）`;
 		}
 		return `<div class="rewardEntry">
-				<div class="range">${lowerRange} ~ ${upperRange}</div>
+				<div class="range">${rewardRange}</div>
 				<div class="content">${rewardContent}</div>
 			</div>`.fmt();
 	}
@@ -165,52 +171,50 @@ function parseEnemy(obj){
 					<div class="title">弱點</div>
 					<div class="value Long">${getWeakness()}</div>
 				</div>
-
-				<div class="Enemy-States">
-					<div class="rowField">
-						<div class="title green">命中</div>
-						<div class="value Short">${getStateWithFixed("phy_hit")}</div>
-					</div>
-					<div class="rowField">
-						<div class="title green">迴避</div>
-						<div class="value Short">${getStateWithFixed("phy_evd")}</div>
-					</div>
-					<div class="rowField">
-						<div class="title green">發動</div>
-						<div class="value Short">${getStateWithFixed("mgc_hit")}</div>
-					</div>
-					<div class="rowField">
-						<div class="title green">抵抗</div>
-						<div class="value Short">${getStateWithFixed("mgc_evd")}</div>
-					</div>
-					<div class="rowField">
-						<div class="title green">看破</div>
-						<div class="value Short">${getStateWithFixed("lucky")}</div>
-					</div>
-				</div>
-				<div class="Enemy-States">
-					<div class="rowField">
-						<div class="title purple">行動值</div>
-						<div class="value Short">${getState("speed")}</div>
-					</div>
-					<div class="rowField">
-						<div class="title purple">戰鬥移動</div>
-						<div class="value Short">${getMoveSpeed()}</div>
-					</div>
-					<div class="rowField">
-						<div class="title red">生命力</div>
-						<div class="value Short">${getState("hp")}</div>
-					</div>
-					<div class="rowField">
-						<div class="title blue">裝甲</div>
-						<div class="value Short">${getState("phy_armor")}</div>
-					</div>
-					<div class="rowField">
-						<div class="title blue">結界</div>
-						<div class="value Short">${getState("mgc_armor")}</div>
-					</div>
-				</div>
-
+			</div>
+		</div>
+		<div class="Enemy-States">
+			<div class="rowField">
+				<div class="title green">命中</div>
+				<div class="value Short">${getStateWithFixed("phy_hit")}</div>
+			</div>
+			<div class="rowField">
+				<div class="title green">迴避</div>
+				<div class="value Short">${getStateWithFixed("phy_evd")}</div>
+			</div>
+			<div class="rowField">
+				<div class="title green">發動</div>
+				<div class="value Short">${getStateWithFixed("mgc_hit")}</div>
+			</div>
+			<div class="rowField">
+				<div class="title green">抵抗</div>
+				<div class="value Short">${getStateWithFixed("mgc_evd")}</div>
+			</div>
+			<div class="rowField">
+				<div class="title green">看破</div>
+				<div class="value Short">${getStateWithFixed("spc_evd")}</div>
+			</div>
+		</div>
+		<div class="Enemy-States">
+			<div class="rowField">
+				<div class="title purple">行動值</div>
+				<div class="value Short">${getState("speed")}</div>
+			</div>
+			<div class="rowField">
+				<div class="title purple">戰鬥移動</div>
+				<div class="value Short">${getMoveSpeed()}</div>
+			</div>
+			<div class="rowField">
+				<div class="title red">生命力</div>
+				<div class="value Short">${getState("hp")}</div>
+			</div>
+			<div class="rowField">
+				<div class="title blue">裝甲</div>
+				<div class="value Short">${getState("phy_armor")}</div>
+			</div>
+			<div class="rowField">
+				<div class="title blue">結界</div>
+				<div class="value Short">${getState("mgc_armor")}</div>
 			</div>
 		</div>
 		<div class="Enemy-Actions">

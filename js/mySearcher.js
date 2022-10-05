@@ -74,13 +74,14 @@
       var result = filter.advanced
         .map( f => {
           var itemVal = getValue(itemObj, f.field);
-          console.log(itemVal)
-          
 
           if(f.type == "selection"){
             var hasPos = f.posItems.length==0 || isIncludes(f.posItems, itemVal);
             var notNeg = f.negItems.length==0 || !isIncludes(f.negItems, itemVal);
             return hasPos && notNeg;
+          }
+          else if(f.type == "dual-range"){
+            return (f.min <= itemVal && itemVal <= f.max);
           }
           return true;
         })
@@ -112,43 +113,107 @@
 
     this.config.advanced.forEach( advOpt => {
       var entry = this.panelElem.find(`.AdvancedOptionEntry[data-search-field="${advOpt.field}"] .innerEntry`);
-      if(entry.hasClass("selection")) {
-        var positiveItem = entry.find('.yes');
-        var negativeItem = entry.find('.no');
+      var type  = entry.attr('data-search-type');
 
-        if(positiveItem.length>0 || negativeItem.length>0){
-          var args = {};
-          args.field = advOpt.field;
-          args.type = 'selection';
-          args.posItems = positiveItem.map((i, el) => $(el).attr("data-search-value")).toArray();
-          args.negItems = negativeItem.map((i, el) => $(el).attr("data-search-value")).toArray();
-          ret.push(args);
-        }
+      var filterObj = {};
+      filterObj.field = advOpt.field;
+      filterObj.type  = type;
+      filterObj.isValid = false;
+
+      switch(type){
+        case "selection":  this.setFilterObj_selection(filterObj, entry); break;
+        case "dual-range": this.setFilterObj_dualRange(filterObj, entry); break;
       }
+
+      if(filterObj.isValid)
+        ret.push(filterObj);
     });
     return ret;
   }
 
   //=====================
-  toggleAdvanceSearch(){
-    this.panelElem.find(".AdvancedOptionsPanel").toggle(200);
-  }
+  // Selection Options
   onclickAdvSelectItem(evt){
     const elem = evt.target;
-    if( $(elem).hasClass("yes") ){
+    var isPositive = $(elem).hasClass("yes");
+    var isNegative = $(elem).hasClass("no");
+
+    if( !isPositive && !isNegative ){
+      $(elem).addClass("yes");
+    }
+    else if( isPositive ){
       $(elem).removeClass("yes");
       $(elem).addClass("no");
     }
-    else if( $(elem).hasClass("no") ){
+    else if( isNegative ){
       $(elem).removeClass("no");
-    }
-    else {
-      $(elem).addClass("yes");
     }
     this.Search();
   }
+  setFilterObj_selection(filterObj, entryElem){
+    var positiveItem = entryElem.find('.yes');
+    var negativeItem = entryElem.find('.no');
+
+    if(positiveItem.length>0 || negativeItem.length>0){
+      filterObj.posItems = positiveItem.map((i, el) => $(el).attr("data-search-value")).toArray();
+      filterObj.negItems = negativeItem.map((i, el) => $(el).attr("data-search-value")).toArray();
+      filterObj.isValid = true;
+    }
+  }
 
   //=====================
+  // Dual-Range Options
+  onchangeAdvRange(evt){
+    const elem = evt.target;
+
+    var rangeVal = this.getDualRangeVal($(elem).parent())
+    $(elem).parent().parent().children('.range-number.min').html(rangeVal.min);
+    $(elem).parent().parent().children('.range-number.max').html(rangeVal.max);
+    this.fillDualRangeColor($(elem).parent());
+
+    this.Search();
+  }
+  getDualRangeVal(rangeItem){
+    var rangeVal = $(rangeItem)
+      .children()
+      .map( (idx, el) => parseInt($(el).val()) )
+      .toArray()
+      .sort((a,b)=>{ return (a-b); });
+    var rangeLength = parseInt($(rangeItem).children().attr('max')) - parseInt($(rangeItem).children().attr('min')) + 1;
+
+    return { min: rangeVal[0], max: rangeVal[1], length: rangeLength };
+  }
+  fillDualRangeColor(rangeItem){
+    var rangeVal = this.getDualRangeVal(rangeItem);
+
+    var fromPos = (rangeVal.min/rangeVal.length)*100;
+    var toPos   = (rangeVal.max/rangeVal.length)*100;
+
+    var defaultColor = "#C6C6C6";
+    var activeColor = "#2a75ff";
+
+    var linearPath = "";
+    linearPath += `${defaultColor}, ${defaultColor} ${fromPos}%, `;
+    linearPath += `${activeColor} ${fromPos}%, ${activeColor} ${toPos}%, `;
+    linearPath += `${defaultColor} ${toPos}%, ${defaultColor} 100%`;
+
+    $(rangeItem).children(":first-child").css('background', `linear-gradient(to right, ${linearPath})`)
+  }
+  setFilterObj_dualRange(filterObj, entryElem){
+    filterObj.max = parseInt(entryElem.find(".range-number.max").html());
+    filterObj.min = parseInt(entryElem.find(".range-number.min").html());
+    filterObj.isValid = true;
+  }
+
+
+
+
+  //=====================
+  // Basic Components
+  toggleAdvanceSearch(){
+    this.panelElem.find(".AdvancedOptionsPanel").toggle(200);
+  }
+  //-------
   buildBasicPanel(){
     this.panelElem.append(`
       <div class="SearchBar">
@@ -170,6 +235,7 @@
     });
     // attach Event
     advPanelElem.find(".select-item").on('click', this.onclickAdvSelectItem.bind(this));
+    advPanelElem.find(".dual-range-item input[type=range]").on('change', this.onchangeAdvRange.bind(this));
   }
   buildAdvancedOption(optionObj){
     var optionContent = '';
@@ -177,6 +243,17 @@
     switch(optionObj.type){
       case 'selection':
         optionContent = optionObj.options.map( opt => `<div class="select-item" data-search-value="${opt.value}">${opt.text}</div>` ).join("");
+        break;
+      case "dual-range":
+        optionContent = `
+          <div class="dual-range-item">
+            <div class="range-number min">${optionObj.config.min}</div>
+            <div class="range-input">
+              <input type="range" step=${optionObj.config.step} min=${optionObj.config.min} max=${optionObj.config.max} value=${optionObj.config.min}>
+              <input type="range" step=${optionObj.config.step} min=${optionObj.config.min} max=${optionObj.config.max} value=${optionObj.config.max}>
+            </div>
+            <div class="range-number max">${optionObj.config.max}</div>
+          </div>`.fmt();
         break;
       default:
         optionContent = '-';
@@ -186,7 +263,7 @@
     return `
       <div class="AdvancedOptionEntry" data-search-field="${optionObj.field}">
         <div class="title">${optionObj.title}</div>
-        <div class="innerEntry selection">${optionContent}</div>
+        <div class="innerEntry" data-search-type="${optionObj.type}">${optionContent}</div>
       </div>`.fmt();
   }
 }

@@ -70,6 +70,7 @@ form.SearchBox {
   font-size: 12px;
 }
 
+/* Type: Selection */
 .AdvancedOptionEntry .innerEntry .select-item {
   padding: 2px 10px;
   margin: 0 2px;
@@ -81,3 +82,51 @@ form.SearchBox {
 }
 .AdvancedOptionEntry .innerEntry .select-item.yes { background:#2a75ff; color:white }
 .AdvancedOptionEntry .innerEntry .select-item.no {  background:#bf1717; color:white; }
+
+/* Type: Dual-Range */
+.dual-range-item { display: flex; }
+.dual-range-item .range-number {
+  color: #80d0ff;
+  padding: 5px;
+  width: 40px;
+  text-align: center;
+  font-size: 16px;
+}
+.dual-range-item .range-input {
+  position: relative;
+  width: 300px;
+  padding: 10px 0;
+}
+.dual-range-item input[type=range] {
+  -webkit-appearance: none; 
+  appearance: none;
+  height: 2px;
+  width: 300px;
+  
+  position: absolute;
+  background-color: #2a75ff;
+  pointer-events: none;
+}
+.dual-range-item input[type=range]:last-child {
+  background-color: rgba(0,0,0,0);
+}
+.dual-range-item input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+  z-index: 10;
+}
+.dual-range-item input[type=range]::-moz-range-thumb {
+  -webkit-appearance: none;
+  pointer-events: all;
+  width: 15px;
+  height: 15px;
+  border-radius: 10px;
+  background-color: #fff;
+  cursor: pointer;
+  z-index: 10;
+}

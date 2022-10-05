@@ -59,6 +59,11 @@ h1 {
   padding: 10px 10px;
   min-height: 32px;
 }
+#ItemContainer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
 
 /*==============
  * NavBar Object */
