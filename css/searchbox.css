@@ -50,6 +50,12 @@ form.SearchBox {
   display: block;
 }
 
+.SearchResult {
+  margin: 15px 10px 0 10px;
+  color: #eee;
+  font-size: 10px;
+}
+
 
 .AdvancedOptionsPanel {
   display: none;

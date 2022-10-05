@@ -50,12 +50,17 @@
     // :: after
     if(this.afterSearchFunc != null){
       this.afterSearchFunc(this.resultList);
+      this.printResultCount();
     }
   }
   GetResult(){
     return this.resultList;
   }
 
+  printResultCount(){
+    var count = this.resultList.length;
+    this.panelElem.find(".SearchResult").text(LangUtil.Searcher["resultDefaultText"].replace("{0}", count));
+  }
 
   //=====================
   isMatch(itemObj, filter){
@@ -102,6 +107,7 @@
     }
     function isIncludes(arr, item){
       if(Array.isArray(item)){
+        if(item.length==0) return false;
         return item.map( it => arr.includes(it) ).reduce( (a,b) => a||b );
       } else {
         return arr.includes(item);
@@ -222,6 +228,7 @@
           <input class="SearchInput" type="search" placeholder="${this.config.placeholderText}" autofocus />
           <button class="SearchBtn">${LangUtil.Searcher['search']}</button>
         </form>
+        <div class="SearchResult"></div>
       </div>
       <div class="AdvancedOptionsPanel"></div>`.fmt());
     this.panelElem.find(".AdvancedSearchBtn").on('click', this.toggleAdvanceSearch.bind(this));
@@ -276,6 +283,7 @@ LangUtil.Searcher = {
   search: "搜尋",
   advanceSearch: "進階搜尋",
   placeholderDefaultText: "請輸入關鍵字",
+  resultDefaultText: "總共{0}筆資料",
 };
 
 String.prototype.fmt = function(){
