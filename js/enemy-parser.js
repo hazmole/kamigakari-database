@@ -52,8 +52,7 @@ Util.Elemental = {
 function parseEnemy(obj){
 
 	function getName(){
-		var groupText = (obj.isGroup)? ` x${obj.groupNumber}`: "";
-		return obj.name + groupText;
+		return obj.name;
 	}	
 	function getReputation(){
 		return obj.info?.repu? obj.info.repu: "-";
