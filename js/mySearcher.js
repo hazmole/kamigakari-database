@@ -15,19 +15,22 @@
     this.resultList = null;
 
     this.compareFunc = null;
+    this.beforeSearchFunc = null;
     this.afterSearchFunc = null;
   }
 
   //=====================
-  Register(itemList, config, afterSearchFunc){
+  Register(itemList, config){
     this.itemList = itemList;
     if(config){
       if(config.placeholderText != null) this.config.placeholderText = config.placeholderText;
       if(config.simple != null)   this.config.simple   = config.simple;
       if(config.advanced != null) this.config.advanced = config.advanced;
+      if(config.compareFunc != null) this.compareFunc = config.compareFunc;
     }
-    this.afterSearchFunc = afterSearchFunc;
   }
+  SetAfterSearchFunc(func){ this.afterSearchFunc = func; }
+  SetBeforeSearchFunc(func){ this.beforeSearchFunc = func; }
   Build(elemId){
     this.panelElem = $(`#${elemId}`);
     if(this.panelElem.length==0){
@@ -39,18 +42,24 @@
     this.buildAdvancedOptions();
   }
   Search(){
-    // :: before: Get Filters
+    // :: before
+    if(this.beforeSearchFunc != null){
+      this.beforeSearchFunc();
+    }
     var filter = {};
     filter.simple = this.panelElem.find(".SearchInput").val();
     filter.advanced = this.getActiveAdvanceSearchOption();
 
     // Search
     this.resultList = this.itemList.filter( item => this.isMatch(item, filter) );
+    if(this.compareFunc!=null){
+      this.resultList.sort(this.compareFunc);
+    }
 
     // :: after
+    this.printResultCount();
     if(this.afterSearchFunc != null){
       this.afterSearchFunc(this.resultList);
-      this.printResultCount();
     }
   }
   GetResult(){

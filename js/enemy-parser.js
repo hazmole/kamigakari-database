@@ -52,13 +52,13 @@ Util.Elemental = {
 function parseEnemy(obj){
 
 	function getName(){
-		return obj.name;
+		return obj.name.replace(/x/, "×");
 	}	
 	function getReputation(){
-		return obj.info?.repu? obj.info.repu: "-";
+		return obj.info?.repu!=null? obj.info.repu: "-";
 	}
 	function getSize(){
-		return obj.info?.size? obj.info.size: "-";
+		return obj.info?.size!=null? obj.info.size: "-";
 	}
 	function getIntelligent(){
 		return obj.info?.int? Util.EnemyIntelligent[obj.info.int]: "";
@@ -77,7 +77,7 @@ function parseEnemy(obj){
 	}
 	function getWeakness(){
 		if(!obj.info?.weakness || obj.info.weakness.length==0) return "無";
-		return obj.info.weakness.map( w => Util.Elemental[w] ).join(", ");
+		return obj.info.weakness.map( w => `［${Util.Elemental[w]}］` ).join("");
 	}
 	function getState(key){
 		if(!obj.states || obj.states[key]==null) return "-";
@@ -105,7 +105,7 @@ function parseEnemy(obj){
 		return `
 <div class="rowField talent">
 	<div class="title">${actionObj.name}</div>
-	<div class="tags">${actionObj.tag.map( t => `<div class="tag">${t}</div>` ).join("")}</div>
+	<div class="tags">${actionObj.tag.map( t => `<div class="tag">${t.shiftToFW()}</div>` ).join("")}</div>
 	<div class="value">${Array.isArray(actionObj.effect)? actionObj.effect.join("<br>"): actionObj.effect}</div>
 </div>`.fmt();
 	}

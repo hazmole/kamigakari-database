@@ -73,6 +73,8 @@ form.SearchBox {
 }
 .AdvancedOptionEntry .innerEntry {
   display: flex;
+  flex-wrap: wrap;
+  max-width: 800px;
   font-size: 12px;
 }
 

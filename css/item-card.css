@@ -89,7 +89,7 @@
 
 /*.rowField.talent:not(:last-child) { border-bottom: 1px solid #c5c5c5; }*/
 .rowField.talent { border-bottom: 1px solid #c5c5c5; }
-.rowField.talent .title { width: 120px; background: #bdbdbd; }
+.rowField.talent .title { width: 130px; background: #bdbdbd; }
 .rowField.talent .tags { display: flex; }
 .rowField.talent .value { width: 100%; }
 

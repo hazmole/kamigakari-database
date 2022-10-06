@@ -9,105 +9,27 @@
 	<script src="./js/jquery-3.6.0.min.js"></script>
 	<script src="./js/navbar.js"></script>
 	<script src="./js/mySearcher.js"></script>
+	<script src="./js/windowCtrl.js"></script>
 
 	<script src="./data/enemy-list.js"></script>
 	<script src="./js/enemy-parser.js"></script>
+	<script src="./js/enemy-searcher.js"></script>
 
 	<script>
-		var ENEMY_LIST;
-		var mso = new MySearcher();
-
 		function init(){
-			var objList = ENEMY_LIST;
-			objList.forEach( obj => {
-				$("#ItemContainer").append(parseEnemy(obj));
-			});
-
-			
-			mso.Register(ENEMY_LIST, {
-				simple: { fields:['name'] },
-				advanced: [
-					{
-						field: 'level',
-						title: '等級',
-						type: 'dual-range',
-						config: {
-							min: 1, max: 20, step: 1,
-						}
-					},
-					{
-						field: 'type',
-						title: '種別',
-						type: 'selection',
-						options: [
-							{ text: '人型', value: 'humanoid' },
-							{ text: '魔獸', value: 'beast' },
-							{ text: '怪蟲', value: 'insect' },
-							{ text: '機械', value: 'machine' },
-							{ text: '植物', value: 'plant' },
-							{ text: '不死', value: 'undead' },
-							{ text: '幻獸', value: 'eudemon' },
-							{ text: '混沌', value: 'demon' },
-						],
-					},
-					{
-						field: 'info.int',
-						title: '智能',
-						type: 'selection',
-						options: [
-							{ text: '低', value: 'low' },
-							{ text: '普通', value: 'normal' },
-							{ text: '高', value: 'high' },
-							{ text: '狡猾', value: 'cunning' },
-						],
-					},
-					{
-						field: 'info.sense',
-						title: '感官',
-						type: 'selection',
-						options: [
-							{ text: '普通', value: 'normal' },
-							{ text: '熱', value: 'heat' },
-							{ text: '魔力', value: 'magic' },
-							{ text: '領域', value: 'field' },
-						],
-					},
-					{
-						field: 'info.movement',
-						title: '移動方式',
-						type: 'selection',
-						options: [
-							{ text: '步行', value: 'walk' },
-							{ text: '飛行', value: 'fly' },
-							{ text: '水中', value: 'swim' },
-						],
-					},
-					{
-						field: 'info.weakness',
-						title: '弱點',
-						type: 'selection',
-						options: [
-							{ text: '火炎', value: 'fire' },
-							{ text: '寒氣', value: 'cold' },
-							{ text: '電擊', value: 'electric' },
-							{ text: '磁力', value: 'magnetic' },
-							{ text: '風壓', value: 'wind' },
-							{ text: '閃光', value: 'flash' },
-							{ text: '魔毒', value: 'poison' },
-							{ text: '幻覺', value: 'illusion' },
-						],
-					}
-				],
-			}, printResult);
-			mso.Build("SearchPanel");
-			mso.Search();
+			EnemySearchCtrl.searcher.SetBeforeSearchFunc(beforeSearch);
+			EnemySearchCtrl.searcher.SetAfterSearchFunc(afterSearch);
+			EnemySearchCtrl.searcher.Build("SearchPanel");
+			EnemySearchCtrl.searcher.Search();
 		}
 
-		function printResult(itemList){
+		function beforeSearch(){
+			WindowCtrl.BlockUI();
+		}
+		function afterSearch(itemList){
 			$("#ItemContainer").empty();
-			itemList.forEach( item => {
-				$("#ItemContainer").append(parseEnemy(item));
-			});
+			$("#ItemContainer").append(itemList.map( item => parseEnemy(item) ).join(""));
+			WindowCtrl.UnblockUI();
 		}
 
 		window.onload = function(){
