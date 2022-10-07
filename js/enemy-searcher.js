@@ -45,6 +45,14 @@ EnemySearchCtrl.advancedCfg = [
     ],
   },
   {
+    field: 'misc',
+    title: '其他',
+    type: 'selection',
+    options: [
+      { text: '×ｎ精怪', value: 'isGroup' },
+    ],
+  },
+  {
     field: 'source',
     title: '資源',
     type: 'selection',
@@ -65,6 +73,21 @@ EnemySearchCtrl.advancedCfg = [
   }
 ];
 
+EnemySearchCtrl.decorateListData = function(list){
+  return list.map( itemObj => {
+    var newObj = {};
+    Object.assign(newObj, itemObj);
+    
+    if(itemObj.alias!=null)
+      newObj.alias = itemObj.alias.map( txt => txt.toLowerCase() ).join(' ');
+    
+    newObj.misc = [];
+    if(itemObj.isGroup) newObj.misc.push("isGroup");
+
+    return newObj;
+  });
+}
+
 EnemySearchCtrl.EnemyTypeArr = [ 'humanoid', 'beast', 'insect', 'plant', 'machine', 'undead', 'eudemon', 'demon'];
 EnemySearchCtrl.cmpFunc = function(a, b){
   if(a.type != b.type) return (EnemySearchCtrl.EnemyTypeArr.indexOf(a.type) - EnemySearchCtrl.EnemyTypeArr.indexOf(b.type));
@@ -72,10 +95,11 @@ EnemySearchCtrl.cmpFunc = function(a, b){
   return ENEMY_LIST.indexOf(a) - ENEMY_LIST.indexOf(b);
 };
 
-
 var ENEMY_LIST;
 EnemySearchCtrl.searcher = new MySearcher();
-EnemySearchCtrl.searcher.Register(ENEMY_LIST, {
+EnemySearchCtrl.searcher.Register(
+  EnemySearchCtrl.decorateListData(ENEMY_LIST),
+  {
     simple: EnemySearchCtrl.simpleCfg,
     advanced: EnemySearchCtrl.advancedCfg,
     compareFunc: EnemySearchCtrl.cmpFunc,

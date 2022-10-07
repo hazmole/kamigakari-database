@@ -65,6 +65,10 @@ h1 {
   align-items: flex-start;
 }
 
+#ItemContainer.EnemyContainer {
+  flex-direction: column;
+}
+
 /*==============
  * NavBar Object */
 #FrameNavbarInner {

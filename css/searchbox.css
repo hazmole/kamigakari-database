@@ -2,6 +2,7 @@
  * SearchPanel */
 .SearchBar {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .AdvancedSearchBtn {
@@ -54,6 +55,7 @@ form.SearchBox {
   margin: 15px 10px 0 10px;
   color: #eee;
   font-size: 10px;
+  width: 100px;
 }
 
 

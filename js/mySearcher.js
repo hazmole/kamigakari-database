@@ -75,9 +75,9 @@
   isMatch(itemObj, filter){
     // Simple Search
     if(filter.simple){
-      var text = filter.simple;
+      var text = filter.simple.toLowerCase();
       var result = this.config.simple.fields
-        .map( field => itemObj[field].includes(text) )
+        .map( field => itemObj[field]!=null && itemObj[field].includes(text) )
         .reduce( (a,b) => a || b );
 
       if(!result) return false;

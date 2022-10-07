@@ -2,9 +2,8 @@
 	display: flex;
 	flex-wrap: wrap;
 }
-.row.baseline {
-	align-items: baseline;
-}
+.row.nowrap { flex-wrap: nowrap; }
+.row.baseline { align-items: baseline; }
 
 button { cursor: pointer; }
 button:hover {

@@ -34,27 +34,24 @@
 .rowField:not(:last-child) .tags { margin-bottom: 1px;}
 
 .rowField .title {
-	width: 70px;
+	width: 60px;
 
 	background-color: #bdbdbd;
 	text-align: center;
 	font-weight: normal;
 }
 .rowField .title { padding: 2px 0px; }
-.rowField .value { padding: 2px 5px; }
+.rowField .value { padding: 2px 5px; width: 60px; }
 .rowField .value.Short { width: 50px; }
-.rowField .value.Long  { width: 120px; }
+.rowField .value.Long  { width: 170px; }
 
-.rowField .title.green { background: #294629; color: #dee7e1; }
-.rowField .title.purple { background: #502885; color: #dee7e1; }
-.rowField .title.red { background: #7a1010; color: #dee7e1; }
-.rowField .title.blue { background: #26397e; color: #dee7e1; }
+.rowField .title.dark { background: #666; color: white; }
 
 
 /* Enemy Custom */
 .Enemy-Item {
-	max-width: 1000px;
-	min-width: 350px;
+	max-width: 600px;
+	min-width: 300px;
 }
 .Enemy-Level {
 	padding: 5px 7px 0 3px;
@@ -80,16 +77,36 @@
 	margin: 0 10px;
 	background-color: black;
 }
+.Enemy-ManaReward {
+	margin-left: auto;
+	padding: 5px;
+	width: 65px;
+	color: #bebfbb;
+	font-size: 10px;
+}
 
-.Enemy-Infos { width: 260px; }
-.Enemy-States { width: 130px; }
+.Enemy-Infos { width: 100%; min-width: 300px; }
+.Enemy-States { width: 100%; }
 .Enemy-Rewards { width: 100%; min-width: 300px; }
 .Enemy-Actions { width: 100%; min-width: 300px; border-top: 1px solid #666666; }
+
+.Enemy-States .rowField { align-items: stretch; }
+.Enemy-States .rowField .title { padding: 20px 0px; }
+.Enemy-States .rowField .value { padding: 0px; text-align: center; }
+.Enemy-States .rowField .subtitle { padding: 2px 0; margin-left: 1px; font-size: 12px;}
+.Enemy-States .rowField .mainVal { margin: 2px 0 1px 0; font-size: 16px; }
+.Enemy-States .rowField .fixVal { margin-bottom: 2px; font-size: 10px; }
+.Enemy-States .rowField .doubleLayerVal { padding: 10px 0px; font-size: 16px; }
+
+.Enemy-States .rowField .subtitle.green { background: #294629; color: #dee7e1; }
+.Enemy-States .rowField .subtitle.purple { background: #502885; color: #dee7e1; }
+.Enemy-States .rowField .subtitle.red { background: #7a1010; color: #dee7e1; }
+.Enemy-States .rowField .subtitle.blue { background: #26397e; color: #dee7e1; }
 
 
 /*.rowField.talent:not(:last-child) { border-bottom: 1px solid #c5c5c5; }*/
 .rowField.talent { border-bottom: 1px solid #c5c5c5; }
-.rowField.talent .title { width: 130px; background: #bdbdbd; }
+.rowField.talent .title { width: 135px; background: #bdbdbd; }
 .rowField.talent .tags { display: flex; }
 .rowField.talent .value { width: 100%; }
 
