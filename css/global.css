@@ -5,6 +5,10 @@
 .row.nowrap { flex-wrap: nowrap; }
 .row.baseline { align-items: baseline; }
 
+.hidden { display: none !important; }
+
+.clickable { cursor: pointer; }
+
 button { cursor: pointer; }
 button:hover {
   filter: brightness(1.1);

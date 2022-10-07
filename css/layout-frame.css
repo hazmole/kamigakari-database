@@ -52,7 +52,7 @@ h1 {
   background: var(--color-ContentBack);
   width: calc(100% - 160px);
   height: calc(100vh - 85px);
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 #FrameContentHeader { 
   background: var(--color-Black);
@@ -63,11 +63,12 @@ h1 {
   display: flex;
   flex-wrap: wrap;
   align-items: flex-start;
+
+  height: calc(100vh - 140px);
+  overflow-y: auto;
 }
 
-#ItemContainer.EnemyContainer {
-  flex-direction: column;
-}
+#ItemContainer.EnemyContainer { display: block; }
 
 /*==============
  * NavBar Object */

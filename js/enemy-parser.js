@@ -103,10 +103,12 @@ function parseEnemy(obj){
 	}
 	//===================
 	function getActionEntry( actionObj ){
+		//var tags = actionObj.tag.map( t => `<div class="tag">${t.shiftToFW()}</div>` ).join("");
+		var tags = `<div class="tag">${actionObj.tag.map( t => t.shiftToFW() ).join("／")}</div>`;
 		return `
 <div class="rowField talent">
 	<div class="title">${actionObj.name}</div>
-	<div class="tags">${actionObj.tag.map( t => `<div class="tag">${t.shiftToFW()}</div>` ).join("")}</div>
+	<div class="tags">${tags}</div>
 	<div class="value">${Array.isArray(actionObj.effect)? actionObj.effect.join("<br>"): actionObj.effect}</div>
 </div>`.fmt();
 	}
@@ -179,7 +181,7 @@ function parseEnemy(obj){
 	</div>
 	<div class="Enemy-States">
 		<div class="rowField row nowrap">
-			<div class="title dark">戰鬥值</div>
+			<div class="title">戰鬥值</div>
 			<div class="row">
 				<div class="value">
 					<div class="subtitle green">命中</div>
@@ -223,6 +225,7 @@ function parseEnemy(obj){
 	</div>
 
 	<div class="Enemy-Actions">
+		<div class="rowTitle">行動</div>
 		${getActions()}
 	</div>
 
