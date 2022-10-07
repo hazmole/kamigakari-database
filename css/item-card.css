@@ -111,7 +111,7 @@
 
 /*.rowField.talent:not(:last-child) { border-bottom: 1px solid #c5c5c5; }*/
 .rowField.talent { border-bottom: 1px solid #c5c5c5; }
-.rowField.talent .title { width: 135px; background: #bdbdbd; }
+.rowField.talent .title { width: 135px; background: #bdbdbd; font-size:13px; }
 .rowField.talent .tags { display: flex; }
 .rowField.talent .value { width: 100%; }
 

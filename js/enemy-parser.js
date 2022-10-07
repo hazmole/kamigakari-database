@@ -73,7 +73,7 @@ function parseEnemy(obj){
 		return obj.info?.react? Util.EnemyReaction[obj.info.react]: "";
 	}
 	function getMovements(){
-		return obj.info?.movement? obj.info.movement.map( m => Util.EnemyMovement[m] ).join(", "): "";
+		return obj.info?.movement? obj.info.movement.map( m => Util.EnemyMovement[m] ).join("、"): "";
 	}
 	function getWeakness(){
 		if(!obj.info?.weakness || obj.info.weakness.length==0) return "無";
