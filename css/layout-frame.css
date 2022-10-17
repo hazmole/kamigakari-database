@@ -4,9 +4,11 @@
   
   --color-Black: #1C1C1C;
   --color-Gray-darker:  #404040;
-  --color-Gray-lighter: #979797;
+  --color-Gray-lighter: #d3d3d3;
   --color-Green: #4A593D;
   --color-lightBrown: #a39382;
+
+  --color-Blue: #2a75ff;
 }
 
 @font-face {
@@ -72,6 +74,7 @@ body {
 #FrameContentHeader { 
   display: flex;
   align-items: flex-start;
+  flex-wrap: wrap;
 
   background: var(--color-Black);
   padding: 10px 10px;
@@ -85,7 +88,7 @@ body {
   height: calc(100%);
   overflow-y: auto;
 }
-
+#ItemContainer > *:last-child {margin-bottom: 80px;}
 #ItemContainer.EnemyContainer { display: block; }
 
 
@@ -113,14 +116,24 @@ body {
   color: white;
   background: var(--color-Gray-darker);
 }
-#FrameNavbarInner .navitem:hover {
-  background: var(--color-Gray-lighter);
-}
 
 @media only screen and (max-width: 650px) {
   #FrameTitle { font-size: 40px; height: 52px; }
   #FrameOuter { height: calc(100vh - 52px); }
   #FrameNavbar { display: none; }
-  #FrameNavbar.show { display: flex; position: fixed; top:100px; animation: navbar-appear .2s ease-in-out; z-index:11; }
+  #FrameNavbar.show { display: flex; position: fixed; top:95px; animation: navbar-appear .2s ease-in-out; z-index:11; }
   #NavbarToggleBtn { display: block; }
+}
+
+/*==============
+ * Page Tab Object */
+#FrameContentHeader .PageTab {
+  background: var(--color-Gray-lighter);
+  padding: 5px 10px;
+  margin: 0 5px 3px 5px;
+  border-radius: 2px;
+}
+#FrameContentHeader .PageTab.active { background:var(--color-Blue); color:white; }
+.Page {
+  margin: 1rem;
 }

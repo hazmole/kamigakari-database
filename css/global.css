@@ -1,3 +1,5 @@
+h2 { margin-top: 0; }
+
 .row {
 	display: flex;
 	flex-wrap: wrap;
@@ -9,10 +11,15 @@
 
 .clickable { cursor: pointer; }
 
+.pseudoBtn { cursor: pointer; }
+.pseudoBtn:hover  { filter: brightness(1.2); }
+.pseudoBtn:active { filter: brightness(0.8); }
+
 button { cursor: pointer; }
-button:hover {
-  filter: brightness(1.1);
-}
-button:active {
-  filter: brightness(0.8);
+button:hover  { filter: brightness(1.1); }
+button:active { filter: brightness(0.8); }
+
+.paragraph { padding: .5rem; }
+.paragraph:not(:first-child) {
+	margin-top: .5rem;
 }
