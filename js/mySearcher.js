@@ -235,13 +235,13 @@
         <button class="AdvancedSearchBtn">▼ ${LangUtil.Searcher['advanceSearch']}</button>
         <form class="SearchBox" onsubmit="event.preventDefault();" role="search">
           <input class="SearchInput" type="search" placeholder="${this.config.placeholderText}" autofocus />
-          <button class="SearchBtn">${LangUtil.Searcher['search']}</button>
         </form>
-        <div class="SearchResult"></div>
+        <!--<div class="SearchResult"></div>-->
       </div>
       <div class="AdvancedOptionsPanel"></div>`.fmt());
     this.panelElem.find(".AdvancedSearchBtn").on('click', this.toggleAdvanceSearch.bind(this));
     this.panelElem.find(".SearchInput").on('search', this.Search.bind(this));
+    this.panelElem.find(".SearchInput").on('change', this.Search.bind(this));
     this.panelElem.find(".SearchBtn").on('click', this.Search.bind(this));
   }
   buildAdvancedOptions(){

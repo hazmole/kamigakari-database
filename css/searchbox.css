@@ -1,26 +1,30 @@
 /*==============
  * SearchPanel */
+#SearchPanel { width: 100%; }
 .SearchBar {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  width: 100%;
 }
 
 .AdvancedSearchBtn {
   background: #707070; color: white;
-  width: 100px;
+  width: 90px;
   border: none;
+  flex-shrink: 0;
 }
 
 form.SearchBox {
   position: relative;
-  width: 300px;
+  max-width: 300px;
   background: #bd5757;
   border-radius: .5rem;
   margin: 0;
+  flex-grow: 1;
 }
 .SearchBox input[type=search] {
   outline: 0;
-  width: 300px;
+  width: 100%;
   height: 2rem;
   background: #fff;
   padding: 0 1rem;
@@ -30,25 +34,7 @@ form.SearchBox {
   transition-property: width, border-radius;
   z-index: 1;
   position: relative;
-}
-.SearchBox input:not(:placeholder-shown) {
-  border-radius: 0;
-  width: calc(300px - 3rem);
-}
-.SearchBox .SearchBtn {
-  display: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 3rem;
-  height: 2rem;
-  font-weight: bold;
-  background: #c5c5c5;
-  border: none;
-  border-radius: 0 .5rem .5rem 0;
-}
-.SearchBox input:not(:placeholder-shown) + .SearchBtn {
-  display: block;
+  flex-shrink: 1;
 }
 
 .SearchResult {
@@ -56,6 +42,7 @@ form.SearchBox {
   color: #eee;
   font-size: 10px;
   width: 100px;
+  flex-shrink: 0;
 }
 
 
@@ -94,7 +81,7 @@ form.SearchBox {
 .AdvancedOptionEntry .innerEntry .select-item.no {  background:#bf1717; color:white; }
 
 /* Type: Dual-Range */
-.dual-range-item { display: flex; }
+.dual-range-item { display: flex; width: 100%; max-width: 500px; }
 .dual-range-item .range-number {
   color: #80d0ff;
   padding: 5px;
@@ -104,14 +91,14 @@ form.SearchBox {
 }
 .dual-range-item .range-input {
   position: relative;
-  width: 300px;
   padding: 10px 0;
+  flex-grow: 1;
 }
 .dual-range-item input[type=range] {
   -webkit-appearance: none; 
   appearance: none;
   height: 2px;
-  width: 300px;
+  width: calc(100%);
   
   position: absolute;
   background-color: #2a75ff;

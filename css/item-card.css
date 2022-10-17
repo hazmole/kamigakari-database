@@ -1,5 +1,11 @@
 /* Basic Item Frame */
 
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+}
+
 .Item {
 	border: 5px groove #ccc;
 	background-color: white;
@@ -10,11 +16,7 @@
 
 	animation: appear .8s ease-in-out;
 }
-@keyframes appear {
-  from {
-    opacity: 0;
-  }
-}
+.Item:last-child { margin-bottom: 80px; }
 
 .ItemHeader {
 	display: flex;
@@ -36,11 +38,12 @@
 	align-items: baseline;
 	flex-wrap: wrap;
 }
-.rowField:not(:last-child) .title { margin-bottom: 1px;}
+.rowField .title { margin-bottom: 1px;}
 .rowField:not(:last-child) .tags { margin-bottom: 1px;}
 
 .rowField .title {
 	width: 60px;
+	flex-shrink: 0;
 
 	background-color: #bdbdbd;
 	text-align: center;

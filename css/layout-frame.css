@@ -15,46 +15,64 @@
   font-weight: normal;
   font-style: normal;
 }
+@keyframes navbar-appear {
+  from { opacity: 0; }
+}
 
 /*==============
- * Frame */
+ * Body */
 body {
   margin: 0;
   box-sizing: border-box;
+
+  height: 100vh;
 }
-h1 {
+
+/*==============
+ * Frame */
+#FrameTitle {
   font-family: "HanyiSenty";
-  font-size: 64px;
+  font-size: 52px;
   font-weight: normal;
   text-shadow: 0.1em 0.1em 0em black;
   background-color: var(--color-titleBack);
   color: white;
-  position: relative;
-  margin-bottom: 0;
-  height: 85px;
+
+  margin: 0;
+  height: 70px;
+  word-break: normal;
+  overflow: hidden;
 }
 
-/*==============
- * Frame */
 #FrameOuter {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  width: 100vw;
+  height: calc(100vh - 70px);
 }
+
 #FrameNavbar {
   display: flex;
   flex-direction: column;
   background: var(--color-Black);
   width: 160px;
-  height: calc(100vh - 85px);
+  height: 100%;
+
+  flex-grow: 0;
+  flex-shrink: 0;
 }
+
 #FrameContent { 
   background: var(--color-ContentBack);
-  width: calc(100% - 160px);
-  height: calc(100vh - 85px);
+  height: 100%;
   overflow-y: hidden;
+
+  flex-grow: 1;
 }
 #FrameContentHeader { 
+  display: flex;
+  align-items: flex-start;
+
   background: var(--color-Black);
   padding: 10px 10px;
   min-height: 32px;
@@ -64,11 +82,23 @@ h1 {
   flex-wrap: wrap;
   align-items: flex-start;
 
-  height: calc(100vh - 140px);
+  height: calc(100%);
   overflow-y: auto;
 }
 
 #ItemContainer.EnemyContainer { display: block; }
+
+
+#NavbarToggleBtn {
+  display: none;
+  border: 1px white solid;
+  border-radius: 2px;
+  padding: 6px 11px;
+  margin-right: 10px;
+  color: white;
+  cursor: pointer;
+}
+#NavbarToggleBtn::after { content: "=";}
 
 /*==============
  * NavBar Object */
@@ -85,4 +115,12 @@ h1 {
 }
 #FrameNavbarInner .navitem:hover {
   background: var(--color-Gray-lighter);
+}
+
+@media only screen and (max-width: 650px) {
+  #FrameTitle { font-size: 40px; height: 52px; }
+  #FrameOuter { height: calc(100vh - 52px); }
+  #FrameNavbar { display: none; }
+  #FrameNavbar.show { display: flex; position: fixed; top:100px; animation: navbar-appear .2s ease-in-out; z-index:11; }
+  #NavbarToggleBtn { display: block; }
 }
