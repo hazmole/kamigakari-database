@@ -41,17 +41,7 @@ function BuildClassPage(classObj){
 	</div>`.fmt();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-window.onload = function(){ init(); }
+window.onload = function(){ 
+	init();
+	WindowCtrl.UnblockUI();
+}

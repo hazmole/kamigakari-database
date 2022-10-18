@@ -36,16 +36,7 @@ function BuildRacePage(raceObj){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-window.onload = function(){ init(); }
+window.onload = function(){ 
+	init();
+	WindowCtrl.UnblockUI();
+}

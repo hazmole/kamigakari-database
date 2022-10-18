@@ -8,7 +8,7 @@
     this.pageElemId = null;
     this.objList = [];
 
-    this.GetTitleFunc = function(obj){ obj.title; };
+    this.GetTitleFunc = function(obj){ return obj.title; };
     this.BuildPageFunc = function(obj){ return `<div>${obj.value}</div>`; }
   }
 

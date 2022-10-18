@@ -26,6 +26,7 @@
 body {
   margin: 0;
   box-sizing: border-box;
+  background: var(--color-ContentBack);
 
   height: 100vh;
 }
