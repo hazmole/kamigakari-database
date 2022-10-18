@@ -4,6 +4,20 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="./css/global.css">
 	<link rel="stylesheet" href="./css/layout-frame.css">
+	<link rel="stylesheet" href="./css/item-card.css">
+	<style>
+		h2 { margin-bottom: 0; }
+		h4 { margin:1.5rem 0 5px 5px; }
+		.race-info { border-radius: 5px; background: #ffedad; max-width: 800px; }
+		.race-feat { border-radius: 5px; background: #ffffff; max-width: 800px; margin: 0 5px; padding: 5px;  }
+		.race-feat div:last-child { padding-left:10px; }
+		.race-state { border-spacing: 0; margin: 0 5px; border: 3px groove #ccc; }
+		.race-state th, .race-state td { width: 50px; text-align: center;  }
+		.race-state th { background: #ccc; font-size: 14px; }
+		.race-state td { background: #fff; }
+		.race-state td.title { background-color:#666; color:white; padding:2px 0; }
+		.race-state tr:not(:last-child) td { border-bottom: 1px solid #a5a5a5; }
+	</style>
 
 	<script src="./js/jquery-3.6.0.min.js"></script>
 	<script src="./js/util.js"></script>
@@ -14,6 +28,7 @@
 
 	<script src="./data/races.js"></script>
 	<script src="./data/talents-race.js"></script>
+	<script src="./js/parser-talent.js"></script>
 	<script src="./js/page-raceList.js"></script>
 </head>
 <body>

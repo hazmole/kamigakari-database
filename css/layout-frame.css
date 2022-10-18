@@ -132,8 +132,10 @@ body {
   padding: 5px 10px;
   margin: 0 5px 3px 5px;
   border-radius: 2px;
+  font-size: 14px;
 }
 #FrameContentHeader .PageTab.active { background:var(--color-Blue); color:white; }
 .Page {
   margin: 1rem;
+  width: 100%;
 }

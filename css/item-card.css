@@ -1,11 +1,11 @@
-/* Basic Item Frame */
-
 @keyframes appear {
   from {
     opacity: 0;
   }
 }
 
+/*------------------*/
+/* Basic Item Frame */
 .Item {
 	border: 5px groove #ccc;
 	background-color: white;
@@ -16,7 +16,6 @@
 
 	animation: appear .8s ease-in-out;
 }
-.Item:last-child { margin-bottom: 80px; }
 
 .ItemHeader {
 	display: flex;
@@ -130,3 +129,88 @@
 }
 .rewardEntry .range { width: 45px; text-align: center; background: #ddd; padding:3px 2px; }
 .rewardEntry .content { padding: 0px 5px;}
+
+
+/* Basic Item-list Frame */
+.Item-list {
+	display: flex;
+	justify-content: flex-start;
+	align-items: stretch;
+	flex-wrap: wrap;
+
+	background: white;
+	color: black;
+	font-size: 14px;
+
+	width: auto;
+	border: 3px groove #ccc;
+	margin: 0 5px;
+}
+.Item-list .fixWidth { flex-shrink:0; flex-grow:0; }
+.Item-list .title {
+	background: black; color: white;
+	width: 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+}
+.Item-list .category {
+	position: relative;
+	margin: 0;
+	padding: 0px 6px 0;
+
+	background: #666; color: white;
+	font-size: 10px;
+}
+.Item-list .category:before {
+	content: "";
+	position: absolute;
+	right: -6px;
+	bottom: 0; top: 0;
+	border-right: 0px;
+	border-left: 6px solid #666;
+	border-top: 8px solid transparent;
+	border-bottom: 8px solid transparent;
+}
+
+.Item-list .title .mainTitle {
+	align-self: stretch; text-align: center;
+	padding: 5px;
+	font-size: 16px;
+}
+.Item-list .type {
+	text-align: center;
+	width: 40px;
+	padding: 5px 5px;
+}
+.Item-list .red { background-color:#811c1c; color:white; }
+.Item-list .green { background-color:#1f7a53; color:white; }
+.Item-list .blue { background-color:#33699d; color:white; }
+.Item-list .purple { background-color:#371c81; color:white; }
+.Item-list .yellow { background-color:#9b7703; color:white; }
+.Item-list .brown { background-color:#52361b; color:white; }
+
+.Item-list .blockCell {
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+	border-right: 1px solid #6a6a6a;
+	padding-bottom: 5px;
+	width: 70px;
+}
+.Item-list .blockCell div { flex-grow: 1;}
+.Item-list .blockCell div:before {
+	display: block;
+	font-size: 10px;
+	width: 100%;
+	background: #ccc; color: black;
+	margin-bottom: 5px;
+}
+.Item-list .field { padding: 5px; align-self: center; max-width: 1000px; }
+
+
+.Item-list.talent .blockCell .phase:before { content: "時機"; }
+.Item-list.talent .blockCell .range:before { content: "距離"; }
+.Item-list.talent .blockCell .target:before { content: "對象"; }
+.Item-list.talent .blockCell .cost:before { content: "代價"; }
+
