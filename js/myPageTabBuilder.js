@@ -26,20 +26,36 @@
     $(`#${this.tabElemId} .PageTab`).on('click', this.GoToPage.bind(this));
 
     // Goto Default
-    $(`#${this.tabElemId} .PageTab`).get(0).click();
+    var defaultIdx = this.getCurrentPageIdx();
+    if(defaultIdx >= this.objList.length) defaultIdx = this.objList.length-1;
+    $(`#${this.tabElemId} .PageTab`).get(defaultIdx).click();
   }
 
   GoToPage = function(evt){
     var selfElem = evt.target;
 
+    // Render Tabs
     $(`#${this.tabElemId} .PageTab`).removeClass("active");
     $(selfElem).addClass("active");
 
+    // Render Page
     var idx = $(selfElem).attr("tab-data");
     var pageElem = this.BuildPageFunc(this.objList[idx]);
-
     $(`#${this.pageElemId}`).empty();
     $(`#${this.pageElemId}`).append(pageElem);
+
+    // Update URL
+    this.updatePageIdx(idx);
   }
 
- }
+  getCurrentPageIdx = function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentPageIdx = parseInt(urlParams.get('p'));
+    if(currentPageIdx==null || isNaN(currentPageIdx)) return 0;
+    return currentPageIdx;
+  }
+  updatePageIdx = function(idx){
+    const path = window.location.pathname;
+    window.history.pushState({}, '', path+`?p=${idx}`);
+  }
+}
