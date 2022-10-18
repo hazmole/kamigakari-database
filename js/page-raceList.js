@@ -30,7 +30,7 @@ function BuildRacePage(raceObj){
 		</table>
 		
 		<h4>種族天賦一覽</h4>
-		${TALENTS.filter( t => t.type == `race-${raceObj.name}`).map( t => parseTalent(t)).join('') }
+		${TALENTS.filter( t => t.type == `race-${raceObj.name}`).sort(Util.sort.cmpTalent).map( t => parseTalent(t)).join('') }
 		
 	</div>`.fmt();
 }

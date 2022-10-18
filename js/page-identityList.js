@@ -25,7 +25,7 @@ function BuildIdentityPage(obj){
 	function parseItem(item){
 		var iconTxt = item.icon? item.icon: "　";
 		return `<div class="IdentityItem">
-					<div class="title"><b class="icon">${iconTxt}</b> ${item.name}</div>
+					<div class="title"><b class="PrefixIcon">${iconTxt}</b> ${item.name}</div>
 					<div class="content">
 						<div><div class="labelTxt">特徵</div><div>${item.feat}</div></div>
 						<div><div class="labelTxt">起始道具</div><div>${item.items}</div></div>

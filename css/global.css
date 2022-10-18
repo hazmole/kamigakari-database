@@ -23,3 +23,5 @@ button:active { filter: brightness(0.8); }
 .paragraph:not(:first-child) {
 	margin-top: .5rem;
 }
+
+.PrefixIcon { font-family:cursive; font-size:14px; vertical-align: text-top; }

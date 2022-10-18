@@ -149,7 +149,7 @@
 .Item-list .fixWidth { flex-shrink:0; flex-grow:0; }
 .Item-list .title {
 	background: black; color: white;
-	width: 150px;
+	width: 160px;
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
@@ -209,6 +209,7 @@
 .Item-list .field { padding: 5px; align-self: center; max-width: 1000px; }
 
 
+.Item-list.talent .mainTitle { text-align: left; padding-left: 10px; }
 .Item-list.talent .blockCell .phase:before { content: "時機"; }
 .Item-list.talent .blockCell .range:before { content: "距離"; }
 .Item-list.talent .blockCell .target:before { content: "對象"; }

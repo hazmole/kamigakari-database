@@ -10,8 +10,19 @@ function parseTalent(talent){
 		return `${arr.join('-')}`;
 	}
 	function getName(){
-		const prefix = talent.isLimit? (talent.isLimit==1? "●": "◎"): ""; 
-		return prefix + talent.name;
+		var prefix = "";
+		var name = talent.name;
+
+		if(talent.isLimit==1) prefix="●";
+		else if(talent.isLimit==2) prefix="◎";
+		else prefix="　";
+
+		if(name[0]=="※"){
+			name = name.substring(1);
+			prefix = "※";
+		}
+
+		return `<b class="PrefixIcon">${prefix}</b>` + name;
 	}
 	function getEffect(){
 		return Array.isArray(talent.effect)? talent.effect.join('<br>'): talent.effect.replace(/\n/g, '<br>');
