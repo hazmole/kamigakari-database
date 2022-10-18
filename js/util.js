@@ -47,7 +47,16 @@ Util.Elemental = {
 	"illusion": "幻覺",
 };
 
+/* Sorting Function */
+Util.sort = {};
+Util.sort.cmpTalent = function(a,b){
+  if(a.type != b.type) return TALENTS.indexOf(a) - TALENTS.indexOf(b);
+  if(a.isLimit != b.isLimit) return (a.isLimit - b.isLimit);
+  return TALENTS.indexOf(a) - TALENTS.indexOf(b);
+};
 
+
+/* String Function Expansion */
 String.prototype.fmt = function(){
 	return this.replace(/[\t]/g, '')
 }

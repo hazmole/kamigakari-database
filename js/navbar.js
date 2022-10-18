@@ -2,7 +2,8 @@ $(document).ready(buildNavBar);
 
 const NAVBAR = [
 	{ text: "首頁", url: "index.html" },
-	{ text: "種族列表", url: "race-list.html" },
+	{ text: "種族一覽", url: "race-list.html" },
+	{ text: "稱號一覽", url: "class-list.html" },
 	{ text: "敵人列表", url: "enemy-list.html" },
 ]; 
 
