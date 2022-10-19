@@ -6,23 +6,27 @@ function parseTalent(talent){
 		switch(arr[0]){
 			case "race": arr[0]="種族"; break;
 			case "class": arr[0]="稱號"; break;
+			case "common":
+				switch(arr[1]){
+					case "normal":     arr[0]="共通"; arr.length=1; break;
+					case "advanced5":  arr[0]="高等"; arr[1]="5等"; break;
+					case "advanced10": arr[0]="高等"; arr[1]="10等"; break;
+					case "advanced15": arr[0]="高等"; arr[1]="15等"; break;
+					case "advanced20": arr[0]="高等"; arr[1]="20等"; break;
+				}
+				break;
 		}
 		return `${arr.join('-')}`;
 	}
 	function getName(){
 		var prefix = "";
-		var name = talent.name;
 
 		if(talent.isLimit==1) prefix="●";
 		else if(talent.isLimit==2) prefix="◎";
+		else if(talent.isDefault==true) prefix="※";
 		else prefix="　";
 
-		if(name[0]=="※"){
-			name = name.substring(1);
-			prefix = "※";
-		}
-
-		return `<b class="PrefixIcon">${prefix}</b>` + name;
+		return `<b class="PrefixIcon">${prefix}</b>` + talent.name;
 	}
 	function getEffect(){
 		return Array.isArray(talent.effect)? talent.effect.join('<br>'): talent.effect.replace(/\n/g, '<br>');

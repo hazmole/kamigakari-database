@@ -2,11 +2,16 @@ var Util; // from "js/util.js"
 var TALENTS; // from "data/talents-race.js"
 var CLASS_LIST; // from "data/classes.js"
 
+var tabBuilder;
 function init(){
-	var tabBuilder = new MyPageTabBuilder();
+	tabBuilder = new MyPageTabBuilder();
 	tabBuilder.SetPageList(CLASS_LIST);
 	tabBuilder.SetTabTitleFetcher((obj) => { return obj.name; });
 	tabBuilder.SetPageParser(BuildClassPage);
+	tabBuilder.SetPageParseAfterFunc(function(){
+		$(".subtab-btn").on('click', GoToSubPage);
+		$(".subtab-btn:first-child").click();
+	});
 	tabBuilder.Build("FrameContentHeader", "ItemContainer");
 }
 
@@ -27,18 +32,32 @@ function BuildClassPage(classObj){
 			${classObj.effect.join("<br>")}
 		</div>
 
-		<h4>稱號天賦：類型A</h4>
-		<div class="class-type">
-			${classObj.typeA.join("<br>")}
+		<h4>稱號天賦：</h4>
+		<div class="Subtab" style="margin:5px;">
+			<div class="subtab-bar">
+				<div class="subtab-btn pseudoBtn" data-key="A">類型A</div>
+				<div class="subtab-btn pseudoBtn" data-key="B">類型B</div>
+			</div>
+			<hr class="subtab-baseline">
 		</div>
-		${TALENTS.filter( t => t.type == `class-${classObj.name}-A`).sort(Util.sort.cmpTalent).map( t => parseTalent(t)).join('') }
-
-		<h4>稱號天賦：類型B</h4>
-		<div class="class-type">
-			${classObj.typeB.join("<br>")}
-		</div>
-		${TALENTS.filter( t => t.type == `class-${classObj.name}-B`).sort(Util.sort.cmpTalent).map( t => parseTalent(t)).join('') }
+		<div id="Subtab-Container"></div>
 	</div>`.fmt();
+}
+function GoToSubPage(evt){
+	$(".subtab-btn.active").removeClass("active");
+	$(evt.target).addClass("active");
+
+	var classObj = tabBuilder.GetCurrentObj();
+	var type = $(evt.target).attr('data-key');
+	var content = `
+		<div class="class-type">
+			${classObj['type'+type].join("<br>")}
+		</div>
+		${TALENTS.filter( t => t.type == `class-${classObj.name}-${type}`).sort(Util.sort.cmpTalent).map( t => parseTalent(t)).join('') }
+	`.fmt();
+
+	$("#Subtab-Container").empty();
+	$("#Subtab-Container").append(content);
 }
 
 window.onload = function(){ 

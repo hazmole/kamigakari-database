@@ -66,6 +66,9 @@ body {
 }
 
 #FrameContent { 
+  display: flex;
+  flex-direction: column;
+
   background: var(--color-ContentBack);
   height: 100%;
   overflow-y: hidden;
@@ -80,6 +83,7 @@ body {
   background: var(--color-Black);
   padding: 10px 10px;
   min-height: 32px;
+  flex-shrink: 0;
 }
 #ItemContainer {
   display: flex;
@@ -89,7 +93,6 @@ body {
   height: calc(100%);
   overflow-y: auto;
 }
-#ItemContainer > *:last-child {margin-bottom: 80px;}
 #ItemContainer.EnemyContainer { display: block; }
 
 
@@ -139,4 +142,22 @@ body {
 .Page {
   margin: 1rem;
   width: 100%;
+}
+
+.Subtab { margin: 5px 0; }
+.Subtab .Subtab-bar { display: flex; }
+.Subtab .Subtab-btn { 
+  font-weight: bold;
+  padding:2px 10px;
+  margin: 0 2px;
+  background: var(--color-Gray-lighter);
+  border-width: 1 1 0 1;
+  border-color: var(--color-Gray-darker);
+  border-style: solid;
+  border-radius: 5px 5px 0 0;
+}
+.Subtab .Subtab-btn.active { background: var(--color-Blue); color: white; }
+.Subtab .Subtab-baseline { 
+  margin: 0;
+  border-top: solid var(--color-Gray-darker) 1px;
 }

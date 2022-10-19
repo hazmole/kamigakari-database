@@ -54,6 +54,11 @@ Util.sort.cmpTalent = function(a,b){
   if(a.isLimit != b.isLimit) return (a.isLimit - b.isLimit);
   return TALENTS.indexOf(a) - TALENTS.indexOf(b);
 };
+Util.sort.cmpWaeponUpgrade = function(a,b){
+  if(a.type != b.type) return WEAPON_UPGRADE_LIST.indexOf(a) - WEAPON_UPGRADE_LIST.indexOf(b);
+  if(a.value != b.value) return (a.value - b.value);
+  return WEAPON_UPGRADE_LIST.indexOf(a) - WEAPON_UPGRADE_LIST.indexOf(b);
+};
 
 
 /* String Function Expansion */

@@ -215,3 +215,9 @@
 .Item-list.talent .blockCell .target:before { content: "對象"; }
 .Item-list.talent .blockCell .cost:before { content: "代價"; }
 
+.Item-list.gear .title { background: #3a4a58; }
+.Item-list.gear .mainTitle { text-align: left; padding-left: 10px; }
+.Item-list.gear .blockCell .value { font-size: 16px;}
+.Item-list.gear .blockCell .value:before { content: "效果值"; }
+.Item-list.gear .blockCell .cost:before { content: "價格"; }
+

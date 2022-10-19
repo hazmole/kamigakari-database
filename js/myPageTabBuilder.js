@@ -7,14 +7,18 @@
     this.tabElemId = null;
     this.pageElemId = null;
     this.objList = [];
+    this.currentObj = null;
 
     this.GetTitleFunc = function(obj){ return obj.title; };
     this.BuildPageFunc = function(obj){ return `<div>${obj.value}</div>`; }
+    this.AfterRenderPageFunc = null;
   }
 
+  GetCurrentObj = function(){ return this.currentObj; }
   SetPageList = function(list){ this.objList = list; }
   SetTabTitleFetcher = function(func){ this.GetTitleFunc = func; }
   SetPageParser = function(func){ this.BuildPageFunc = func; }
+  SetPageParseAfterFunc = function(func){ this.AfterRenderPageFunc = func; }
 
   Build = function(tabElemId, pageElemId){
     this.tabElemId = tabElemId;
@@ -43,9 +47,13 @@
     var pageElem = this.BuildPageFunc(this.objList[idx]);
     $(`#${this.pageElemId}`).empty();
     $(`#${this.pageElemId}`).append(pageElem);
+    this.currentObj = this.objList[idx];
 
     // Update URL
     this.updatePageIdx(idx);
+
+    // After Render Page
+    if(this.AfterRenderPageFunc) this.AfterRenderPageFunc();
   }
 
   getCurrentPageIdx = function(){
@@ -55,7 +63,9 @@
     return currentPageIdx;
   }
   updatePageIdx = function(idx){
+    const urlParams = new URLSearchParams(window.location.search);
     const path = window.location.pathname;
-    window.history.pushState({}, '', path+`?p=${idx}`);
+    urlParams.set('p', idx);
+    window.history.pushState({}, '', path+`?${urlParams.toString()}`);
   }
 }
