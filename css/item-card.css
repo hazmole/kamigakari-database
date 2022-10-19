@@ -215,9 +215,18 @@
 .Item-list.talent .blockCell .target:before { content: "對象"; }
 .Item-list.talent .blockCell .cost:before { content: "代價"; }
 
-.Item-list.gear .title { background: #3a4a58; }
 .Item-list.gear .mainTitle { text-align: left; padding-left: 10px; }
-.Item-list.gear .blockCell .value { font-size: 16px;}
+.Item-list.gear .blockCell .biggerTxt { font-size: 16px;}
 .Item-list.gear .blockCell .value:before { content: "效果值"; }
+.Item-list.gear .blockCell .require:before { content: "限制"; }
+.Item-list.gear .blockCell .equip:before { content: "用法"; }
+.Item-list.gear .blockCell .hit.phy:before { content: "命中"; }
+.Item-list.gear .blockCell .hit.mgc:before { content: "發動"; }
+.Item-list.gear .blockCell .dmg.phy:before { content: "物Ｄ"; }
+.Item-list.gear .blockCell .dmg.mgc:before { content: "魔Ｄ"; }
+.Item-list.gear .blockCell .spd:before { content: "行動值"; }
 .Item-list.gear .blockCell .cost:before { content: "價格"; }
-
+.Item-list.gear.upgrade .title { background: #3a4a58; }
+.Item-list.gear.weapon .title { background: #483030; }
+.Item-list.gear.weapon .property { display: flex; }
+.Item-list.gear.weapon .property .tag { padding: 2px 5px; margin: 0 2px; background: #fbdcdc; }

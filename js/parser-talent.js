@@ -26,7 +26,7 @@ function parseTalent(talent){
 		else if(talent.isDefault==true) prefix="※";
 		else prefix="　";
 
-		return `<b class="PrefixIcon">${prefix}</b>` + talent.name;
+		return `<font class="PrefixIcon">${prefix}</font>` + talent.name;
 	}
 	function getEffect(){
 		return Array.isArray(talent.effect)? talent.effect.join('<br>'): talent.effect.replace(/\n/g, '<br>');

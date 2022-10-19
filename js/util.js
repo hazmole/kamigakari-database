@@ -59,6 +59,11 @@ Util.sort.cmpWaeponUpgrade = function(a,b){
   if(a.value != b.value) return (a.value - b.value);
   return WEAPON_UPGRADE_LIST.indexOf(a) - WEAPON_UPGRADE_LIST.indexOf(b);
 };
+Util.sort.cmpItem = function(a,b){
+  if(a.type != b.type) return ITEMS.indexOf(a) - ITEMS.indexOf(b);
+  if(a.cost != b.cost) return (a.cost - b.cost);
+  return ITEMS.indexOf(a) - ITEMS.indexOf(b);
+};
 
 
 /* String Function Expansion */

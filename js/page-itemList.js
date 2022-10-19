@@ -1,40 +1,41 @@
 var WEAPON_UPGRADE_LIST; // from "data/*"
+var ITEMS;
 
 var tabBuilder
 function init(){
 	var pageArr = [
 		{ title:"武器:劍", key:'劍', subpageArr: [
-				//{ title: "一般武器", key:'normal' },
+				{ title: "一般武器", key:'normal' },
 				//{ title: "神成神器", key:'legacy' },
 				{ title: "追加效果", key:'upgrade' }
 			]
 		},
 		{ title:"武器:槍", key:'槍', subpageArr: [
-				//{ title: "一般武器", key:'normal' },
+				{ title: "一般武器", key:'normal' },
 				//{ title: "神成神器", key:'legacy' },
 				{ title: "追加效果", key:'upgrade' }
 			]
 		},
 		{ title:"武器:斧", key:'斧', subpageArr: [
-				//{ title: "一般武器", key:'normal' },
+				{ title: "一般武器", key:'normal' },
 				//{ title: "神成神器", key:'legacy' },
 				{ title: "追加效果", key:'upgrade' }
 			]
 		},
 		{ title:"武器:錘", key:'錘', subpageArr: [
-				//{ title: "一般武器", key:'normal' },
+				{ title: "一般武器", key:'normal' },
 				//{ title: "神成神器", key:'legacy' },
 				{ title: "追加效果", key:'upgrade' }
 			]
 		},
 		{ title:"武器:射擊", key:'射擊', subpageArr: [
-				//{ title: "一般武器", key:'normal' },
+				{ title: "一般武器", key:'normal' },
 				//{ title: "神成神器", key:'legacy' },
 				{ title: "追加效果", key:'upgrade' }
 			]
 		},
 		{ title:"武器:魔法", key:'魔法', subpageArr: [
-				//{ title: "一般武器", key:'normal' },
+				{ title: "一般武器", key:'normal' },
 				//{ title: "神成神器", key:'legacy' },
 				{ title: "追加效果", key:'upgrade' }
 			]
@@ -94,7 +95,8 @@ function GoToSubPage(evt){
 	var content = "";
 	if(type=="upgrade"){
 		var content = WEAPON_UPGRADE_LIST.filter( u => u.type == `upgrade-${classObj.key}` ).sort(Util.sort.cmpWaeponUpgrade).map( u => parseGear(u));
-
+	} else if(type=="normal"){
+		var content = ITEMS.filter( u => u.type == `weapon-${classObj.key}` ).sort(Util.sort.cmpItem).map( u => parseGear(u));
 	}
 
 
