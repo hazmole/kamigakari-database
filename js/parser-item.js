@@ -10,12 +10,11 @@ function parseGear(itemObj){
 			case "upgrade": return '追加效果';
 			case "weapon": return '武器';
 			case "armor": return '防具';
-			case "accessories": return '裝飾';
+			case "accessory": return '裝飾';
 			case "permanent": return '常備品';
 			case "consumable": return '消耗品';
 		}
 	}
-
 	function getFullCategoryText(){
 		var txtArr = itemObj.type.split('-');
 		txtArr[0] = getCategoryText();
@@ -32,12 +31,14 @@ function parseGear(itemObj){
 		}
 		return `<font class="PrefixIcon">${prefix}</font>` + itemObj.name;
 	}
+
 	function getRequire(){
 		if(itemObj.require.length==0) return '-';
 		return itemObj.require.join('<br>/');
 	}
 	function getCost(){
-		if(itemObj.cost==null || itemObj.cost=='-' || itemObj.cost==0) return "<font style='font-size:14px;'>非賣品</font>";
+		if(itemObj.cost==0) return "<font style='font-size:14px;'>無</font>";
+		if(itemObj.cost==null || itemObj.cost=='-') return "<font style='font-size:14px;'>非賣品</font>";
 		if(Number.isInteger(itemObj.cost)) return `${itemObj.cost}G`;
 		return itemObj.cost;
 	}
@@ -52,6 +53,13 @@ function parseGear(itemObj){
 
 		return arr.map( tag => `<div class="tag">${tag}</div>` ).join('');
 	}
+	function getUsage(){
+		return itemObj.usage.map( txt => Util.ItemUsage[txt] ).join('<br>');
+	}
+	function getEquip(){
+		return Array.isArray(itemObj.equip)? itemObj.equip.map(e=>Util.ItemEquip[e]).join('、'): Util.ItemEquip[itemObj.equip]
+	}
+
 	function getEffect(){
 		return Array.isArray(itemObj.effect)? itemObj.effect.join('<br>'): itemObj.effect.replace(/\n/g, '<br>');
 	}
@@ -67,49 +75,74 @@ function parseGear(itemObj){
 	}
 
 	var category = getCategory();
-	if(category=="upgrade")
-		return `
-			<div class="Item-list Gear upgrade">
-				<div class="title fixWidth">
-					<div class="category">${getFullCategoryText()}</div>
-					<div class="mainTitle">${getName()}</div>
-				</div>
+	return `<div class="Item-list Gear ${category}">${buildGearInnerElem(category)}</div>`.fmt();
+	//-----------------
+
+	function buildGearInnerElem(category){
+		var cellArr = [];
+
+		// Title
+		cellArr.push(`
+			<div class="title fixWidth">
+				<div class="category">${getFullCategoryText()}</div>
+				<div class="mainTitle">${getName()}</div>
+			</div>`);
+
+		if(category=="upgrade"){
+			cellArr.push(`
 				<div class="blockCell fixWidth">
 					<div class="value biggerTxt">${itemObj.value}</div>
-				</div>
+				</div>`);
+			cellArr.push(`
 				<div class="blockCell fixWidth">
 					<div class="cost biggerTxt">${getCost()}</div>
-				</div>
-				<div class="field">${getEffect()}</div>
-			</div>`.fmt();
-	if(category=="weapon")
-		return `
-			<div class="Item-list Gear weapon">
-				<div class="title fixWidth">
-					<div class="category">${getFullCategoryText()}</div>
-					<div class="mainTitle">${getName()}</div>
-				</div>
-				<div class="blockCell fixWidth" style="width:80px;">
+				</div>`);
+			cellArr.push(`<div class="field">${getEffect()}</div>`);
+		}
+		else if(category=="weapon"){
+			cellArr.push(`<div class="blockCell fixWidth" style="width:80px;">
 					<div class="require">${getRequire()}</div>
-				</div>
-				<div class="blockCell fixWidth">
-					<div class="equip">${itemObj.equip}</div>
-				</div>
-				<div class="blockCell fixWidth">
+				</div>`);
+			cellArr.push(`<div class="blockCell fixWidth">
+					<div class="equip">${getEquip()}</div>
+				</div>`);
+			cellArr.push(`<div class="blockCell fixWidth">
 					<div class="hit ${getPhyOrMgc()} biggerTxt">${getBonusVal(itemObj.hit)}</div>
-				</div>
-				<div class="blockCell fixWidth">
+				</div>`);
+			cellArr.push(`<div class="blockCell fixWidth">
 					<div class="dmg ${getPhyOrMgc()} biggerTxt">${itemObj.dmg.map(v => getBonusVal(v)).join('/')}</div>
-				</div>
-				<div class="blockCell fixWidth">
+				</div>`);
+			cellArr.push(`<div class="blockCell fixWidth">
 					<div class="spd biggerTxt">${itemObj.spd.map(v => getBonusVal(v)).join('/')}</div>
-				</div>
-				<div class="blockCell fixWidth">
+				</div>`);
+			cellArr.push(`<div class="blockCell fixWidth">
 					<div class="cost biggerTxt">${getCost()}</div>
-				</div>
-				<div style="flex-grow:1;">
+				</div>`);
+			cellArr.push(`<div style="flex-grow:1;">
 					<div class="property">${getWeaponProperty()}</div>
 					<div class="field">${getEffect()}</div>
-				</div>
-			</div>`.fmt();
+				</div>`);
+		}
+		else if(category=="accessory"){
+			cellArr.push(`<div class="blockCell fixWidth">
+					<div class="equip">${getEquip()}</div>
+				</div>`);
+			cellArr.push(`<div class="blockCell fixWidth">
+					<div class="cost biggerTxt">${getCost()}</div>
+				</div>`);
+			cellArr.push(`<div class="field">${getEffect()}</div>`);
+		}
+		else if(category=="permanent" || category=="consumable"){
+			cellArr.push(`<div class="blockCell fixWidth" style="width:80px;">
+					<div class="usage">${getUsage()}</div>
+				</div>`);
+			cellArr.push(`<div class="blockCell fixWidth">
+					<div class="cost biggerTxt">${getCost()}</div>
+				</div>`);
+			cellArr.push(`<div class="field">${getEffect()}</div>`);
+		}
+
+
+		return cellArr.join('');
+	}
 }

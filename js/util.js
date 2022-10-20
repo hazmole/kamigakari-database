@@ -46,6 +46,34 @@ Util.Elemental = {
 	"poison": "魔毒",
 	"illusion": "幻覺",
 };
+Util.Elemental = {
+	"fire": "火炎",
+	"cold": "寒氣",
+	"electric": "電擊",
+	"magnetic": "磁力",
+	"wind": "風壓",
+	"flash": "閃光",
+	"poison": "魔毒",
+	"illusion": "幻覺",
+};
+Util.ItemEquip = {
+	"one-hand": "單手",
+	"two-hand": "雙手",
+	"versatile": "單雙手",
+	"head": "頭",
+	"back": "背",
+	"waist": "腰",
+	"hand": "手",
+	"feet": "足",
+};
+Util.ItemUsage = {
+	"other": "其他",
+	"enchantment": "法則障礙",
+	"rest": "小休",
+	"rest-meal": "小休(用餐)",
+	"rest-prepare": "小休(準備)",
+	"rest-sleep": "小休(睡眠)",
+};
 
 /* Sorting Function */
 Util.sort = {};
@@ -55,13 +83,16 @@ Util.sort.cmpTalent = function(a,b){
   return TALENTS.indexOf(a) - TALENTS.indexOf(b);
 };
 Util.sort.cmpWaeponUpgrade = function(a,b){
-  if(a.type != b.type) return WEAPON_UPGRADE_LIST.indexOf(a) - WEAPON_UPGRADE_LIST.indexOf(b);
+  if(a.type != b.type) return ITEMS.indexOf(a) - ITEMS.indexOf(b);
   if(a.value != b.value) return (a.value - b.value);
-  return WEAPON_UPGRADE_LIST.indexOf(a) - WEAPON_UPGRADE_LIST.indexOf(b);
+  return ITEMS.indexOf(a) - ITEMS.indexOf(b);
 };
 Util.sort.cmpItem = function(a,b){
   if(a.type != b.type) return ITEMS.indexOf(a) - ITEMS.indexOf(b);
-  if(a.cost != b.cost) return (a.cost - b.cost);
+  
+  var aCost = a.cost=='-'? Number.MAX_SAFE_INTEGER: a.cost;
+  var bCost = b.cost=='-'? Number.MAX_SAFE_INTEGER: b.cost;
+  if(aCost != bCost) return (aCost - bCost);
   return ITEMS.indexOf(a) - ITEMS.indexOf(b);
 };
 

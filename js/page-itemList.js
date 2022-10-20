@@ -40,9 +40,21 @@ function init(){
 				{ title: "追加效果", key:'upgrade' }
 			]
 		},
-		{ title:"防具:鎧", key:'鎧' },
-		{ title:"防具:盾", key:'盾' },
-		{ title:"裝飾", key:'裝飾' },
+		{ title:"防具:鎧", key:'鎧', subpageArr: [
+				{ title: "一般防具", key:'normal' },
+				//{ title: "神成神器", key:'legacy' },
+			]
+		},
+		{ title:"防具:盾", key:'盾', subpageArr: [
+				{ title: "一般防具", key:'normal' },
+				//{ title: "神成神器", key:'legacy' },
+			]
+		},
+		{ title:"裝飾", key:'裝飾', subpageArr: [
+				{ title: "一般裝飾", key:'normal' },
+				//{ title: "神成神器", key:'legacy' },
+			]
+		},
 		{ title:"常備品", key:'常備' },
 		{ title:"消耗品", key:'消耗' },
 	];
@@ -62,10 +74,11 @@ function BuildItemPage(pageObj){
 	return `
 	<div class="Page">
 		<h2>${pageObj.title}</h2>
+		<div class="item-info"></div>
 
 		${ getSubtabElem() }
-		<div id="Subtab-Container">
-		</div>
+		${ getNormalElem() }
+		
 		
 	</div>`.fmt();
 	//----------
@@ -77,31 +90,59 @@ function BuildItemPage(pageObj){
 					${ pageObj.subpageArr.map( (pageObj, idx) => getSubtabBtn(pageObj, idx) ).join('') }
 				</div>
 				<hr class="subtab-baseline">
-			</div>`;
+			</div>
+			<div id="Subtab-Container"></div>`;
+		//------
+		function getSubtabBtn(btnObj, idx){
+			return `<div class="subtab-btn pseudoBtn" data-key="${btnObj.key}">${btnObj.title}</div>`;
+		}
 	}
-	function getSubtabBtn(btnObj, idx){
-		return `<div class="subtab-btn pseudoBtn" data-key="${btnObj.key}">${btnObj.title}</div>`;
+
+	function getNormalElem(){
+		if( Array.isArray(pageObj.subpageArr) ) return '';
+
+		var typeKey = '';
+		switch(pageObj.key){
+			case "常備": typeKey = 'permanent'; break;
+			case "消耗": typeKey = 'consumable'; break;
+		}
+		return `<div id="Gear-Container">${getItemElemList(typeKey)}</div>`;
 	}
+	
 }
+
+
 function GoToSubPage(evt){
 	if($(".subtab-btn").length<=0) return;
 
+	// Render SubPage Tab
 	$('.subtab-btn.active').removeClass('active');
 	$(evt.target).addClass('active');
 
+	// Get PageKey
 	var classObj = tabBuilder.GetCurrentObj();
-	var type = $(evt.target).attr('data-key');
+	var pageKey = classObj.key;
+	var subpageKey = $(evt.target).attr('data-key');
 
-	var content = "";
-	if(type=="upgrade"){
-		var content = WEAPON_UPGRADE_LIST.filter( u => u.type == `upgrade-${classObj.key}` ).sort(Util.sort.cmpWaeponUpgrade).map( u => parseGear(u));
-	} else if(type=="normal"){
-		var content = ITEMS.filter( u => u.type == `weapon-${classObj.key}` ).sort(Util.sort.cmpItem).map( u => parseGear(u));
+	var filterKey = "";
+	if(subpageKey=="upgrade") filterKey = `upgrade-${pageKey}`;
+	else if(subpageKey=="normal"){
+		if(pageKey=="裝飾") filterKey = `accessory`;
+		else if(pageKey=="盾" || pageKey=="鎧") filterKey = `armor-${pageKey}`;
+		else filterKey = `weapon-${pageKey}`;
 	}
 
-
 	$("#Subtab-Container").empty();
-	$("#Subtab-Container").append(content);
+	$("#Subtab-Container").append(getItemElemList(filterKey));
+}
+
+
+function getItemElemList(filterKey){
+	return ITEMS
+		.filter( t => t.type == filterKey )
+		.sort( Util.sort.cmpItem )
+		.map( t => parseGear(t) )
+		.join('');
 }
 
 window.onload = function(){ 
