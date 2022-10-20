@@ -175,8 +175,13 @@
 
 .Item-list .title .mainTitle {
 	align-self: stretch; text-align: center;
+	flex-grow: 1;
 	padding: 5px;
 	font-size: 16px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
 .Item-list .type {
 	text-align: center;
@@ -195,16 +200,21 @@
 	flex-direction: column;
 	text-align: center;
 	border-right: 1px solid #6a6a6a;
-	padding-bottom: 5px;
-	width: 70px;
+	padding: 0 5px 5px 5px;
+	width: 60px;
 }
-.Item-list .blockCell div { flex-grow: 1;}
+.Item-list .blockCell div {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	flex-grow: 1;
+}
 .Item-list .blockCell div:before {
 	display: block;
 	font-size: 10px;
-	width: 100%;
+	width: clac(100% + 10px);
 	background: #ccc; color: black;
-	margin-bottom: 5px;
+	margin: 0 -5px 5px -5px;
 }
 .Item-list .field { padding: 5px; align-self: center; max-width: 1000px; }
 
@@ -215,6 +225,7 @@
 .Item-list.talent .blockCell .target:before { content: "對象"; }
 .Item-list.talent .blockCell .cost:before { content: "代價"; }
 
+.Item-list.gear { margin: 0; }
 .Item-list.gear .mainTitle { text-align: left; padding-left: 10px; }
 .Item-list.gear .blockCell .biggerTxt { font-size: 16px;}
 .Item-list.gear .blockCell .value:before { content: "效果值"; }
@@ -224,9 +235,18 @@
 .Item-list.gear .blockCell .hit.mgc:before { content: "發動"; }
 .Item-list.gear .blockCell .dmg.phy:before { content: "物Ｄ"; }
 .Item-list.gear .blockCell .dmg.mgc:before { content: "魔Ｄ"; }
+.Item-list.gear .blockCell .amr.phy:before { content: "裝甲"; }
+.Item-list.gear .blockCell .amr.mgc:before { content: "結界"; }
+.Item-list.gear .blockCell .evd:before { content: "迴避"; }
 .Item-list.gear .blockCell .spd:before { content: "行動值"; }
+.Item-list.gear .blockCell .usage:before { content: "用途"; }
 .Item-list.gear .blockCell .cost:before { content: "價格"; }
-.Item-list.gear.upgrade .title { background: #3a4a58; }
-.Item-list.gear.weapon .title { background: #483030; }
 .Item-list.gear.weapon .property { display: flex; }
 .Item-list.gear.weapon .property .tag { padding: 2px 5px; margin: 0 2px; background: #fbdcdc; }
+
+.Item-list.gear.upgrade .title { background: #3a4a58; }
+.Item-list.gear.weapon .title { background: #483030; }
+.Item-list.gear.armor .title { background: #28466a; }
+.Item-list.gear.accessory .title { background: #214618; }
+.Item-list.gear.permanent .title { background: #3b3048; }
+.Item-list.gear.consumable .title { background: #3b3048; }

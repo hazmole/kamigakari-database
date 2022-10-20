@@ -36,19 +36,19 @@ function parseTalent(talent){
 	<div class="Item-list talent">
 		<div class="title fixWidth">
 			<div class="category">${getCategoryText()}</div>
-			<div class="mainTitle">${getName()}</div>
+			<div class="mainTitle"><div>${getName()}</div></div>
 		</div>
 		<div class="blockCell fixWidth">
-			<div class="phase">${talent.phase.join('/')}</div>
+			<div class="phase"><div>${talent.phase.join('/')}</div></div>
 		</div>
 		<div class="blockCell fixWidth">
-			<div class="range">${talent.range}</div>
+			<div class="range"><div>${talent.range}</div></div>
 		</div>
 		<div class="blockCell fixWidth">
-			<div class="target">${talent.target}</div>
+			<div class="target"><div>${talent.target}</div></div>
 		</div>
 		<div class="blockCell fixWidth">
-			<div class="cost">${talent.cost.join('、')}</div>
+			<div class="cost"><div>${talent.cost.join('、')}</div></div>
 		</div>
 		<div class="field">${getEffect()}</div>
 	</div>`.fmt();

@@ -85,59 +85,85 @@ function parseGear(itemObj){
 		cellArr.push(`
 			<div class="title fixWidth">
 				<div class="category">${getFullCategoryText()}</div>
-				<div class="mainTitle">${getName()}</div>
+				<div class="mainTitle"><div>${getName()}</div></div>
 			</div>`);
 
 		if(category=="upgrade"){
 			cellArr.push(`
 				<div class="blockCell fixWidth">
-					<div class="value biggerTxt">${itemObj.value}</div>
+					<div class="value biggerTxt"><div>${itemObj.value}</div></div>
 				</div>`);
 			cellArr.push(`
 				<div class="blockCell fixWidth">
-					<div class="cost biggerTxt">${getCost()}</div>
+					<div class="cost biggerTxt"><div>${getCost()}</div></div>
 				</div>`);
 			cellArr.push(`<div class="field">${getEffect()}</div>`);
 		}
 		else if(category=="weapon"){
 			cellArr.push(`<div class="blockCell fixWidth" style="width:80px;">
-					<div class="require">${getRequire()}</div>
+					<div class="require"><div>${getRequire()}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
-					<div class="equip">${getEquip()}</div>
+					<div class="equip"><div>${getEquip()}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
-					<div class="hit ${getPhyOrMgc()} biggerTxt">${getBonusVal(itemObj.hit)}</div>
+					<div class="hit ${getPhyOrMgc()} biggerTxt"><div>${getBonusVal(itemObj.hit)}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
-					<div class="dmg ${getPhyOrMgc()} biggerTxt">${itemObj.dmg.map(v => getBonusVal(v)).join('/')}</div>
+					<div class="dmg ${getPhyOrMgc()} biggerTxt"><div>${itemObj.dmg.map(v => getBonusVal(v)).join('/')}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
-					<div class="spd biggerTxt">${itemObj.spd.map(v => getBonusVal(v)).join('/')}</div>
+					<div class="spd biggerTxt"><div>${itemObj.spd.map(v => getBonusVal(v)).join('/')}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
-					<div class="cost biggerTxt">${getCost()}</div>
+					<div class="cost biggerTxt"><div>${getCost()}</div></div>
 				</div>`);
 			cellArr.push(`<div style="flex-grow:1;">
 					<div class="property">${getWeaponProperty()}</div>
 					<div class="field">${getEffect()}</div>
 				</div>`);
 		}
-		else if(category=="accessory"){
+		else if(category=="armor"){
+			cellArr.push(`<div class="blockCell fixWidth" style="width:80px;">
+					<div class="require"><div>${getRequire()}</div></div>
+				</div>`);
+			if(itemObj.equip){
+				cellArr.push(`<div class="blockCell fixWidth">
+					<div class="equip"><div>${getEquip()}</div></div>
+				</div>`);
+			}
 			cellArr.push(`<div class="blockCell fixWidth">
-					<div class="equip">${getEquip()}</div>
+					<div class="evd biggerTxt"><div>${getBonusVal(itemObj.evd)}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
-					<div class="cost biggerTxt">${getCost()}</div>
+					<div class="spd biggerTxt"><div>${getBonusVal(itemObj.spd)}</div></div>
+				</div>`);
+			cellArr.push(`<div class="blockCell fixWidth">
+					<div class="amr phy biggerTxt"><div>${getBonusVal(itemObj.phyArmor)}</div></div>
+				</div>`);
+			cellArr.push(`<div class="blockCell fixWidth">
+					<div class="amr mgc biggerTxt"><div>${getBonusVal(itemObj.mgcArmor)}</div></div>
+				</div>`);
+			cellArr.push(`<div class="blockCell fixWidth">
+					<div class="cost biggerTxt"><div>${getCost()}</div></div>
+				</div>`);
+			cellArr.push(`<div class="field">${getEffect()}</div>`);
+		}
+		else if(category=="accessory"){
+			cellArr.push(`<div class="blockCell fixWidth">
+					<div class="equip"><div>${getEquip()}</div></div>
+				</div>`);
+			cellArr.push(`<div class="blockCell fixWidth">
+					<div class="cost biggerTxt"><div>${getCost()}</div></div>
 				</div>`);
 			cellArr.push(`<div class="field">${getEffect()}</div>`);
 		}
 		else if(category=="permanent" || category=="consumable"){
 			cellArr.push(`<div class="blockCell fixWidth" style="width:80px;">
-					<div class="usage">${getUsage()}</div>
+					<div class="usage"><div>${getUsage()}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
-					<div class="cost biggerTxt">${getCost()}</div>
+					<div class="cost biggerTxt"><div>${getCost()}</div></div>
 				</div>`);
 			cellArr.push(`<div class="field">${getEffect()}</div>`);
 		}
