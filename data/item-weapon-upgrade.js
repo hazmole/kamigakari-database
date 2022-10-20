@@ -1,4 +1,7 @@
-var WEAPON_UPGRADE_LIST = [
+var ITEMS;
+if(!ITEMS) ITEMS = [];
+
+Array.prototype.push.apply(ITEMS, [
 {type:"upgrade-劍",name:"破邪之刃",value:2,cost:1500,effect:"此［武器］的［物D］+3。"},
 {type:"upgrade-劍",name:"神秘的鍛造",value:2,cost:1500,effect:"此［武器］的［行動］+2。"},
 {type:"upgrade-劍",name:"金剛刀",value:2,cost:1500,effect:"［裝備］中，［裝甲］獲得+2修正。"},
@@ -228,4 +231,4 @@ var WEAPON_UPGRADE_LIST = [
 {type:"upgrade-魔法",name:"人皮裝訂",value:"-",cost:"-",effect:"［持有、裝備］中，取得任1項★以外的《Boss天賦》。［人皮裝訂］可重複取得，最多2個。"},
 {type:"upgrade-魔法",name:"延命的秘密",value:"-",cost:"-",effect:"［持有、裝備］中，壽命及【生命力】的最大值+120。［延命的秘密］可以重複取得，最多2個。"},
 {type:"upgrade-魔法",name:"禁忌的祕法",value:"-",cost:"-",effect:"［持有、裝備］中，1場遊戲1次，創造任1個［法則障礙］。［禁忌的祕法］可以重複取得，最多3個。"},
-];
+]);
