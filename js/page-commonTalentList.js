@@ -2,13 +2,15 @@ var TALENTS; // from "data/talents-common.js"
 
 function init(){
 	var pageArr = [
+		{ title: "共通種族天賦", sheets: [{ name: "共通種族天賦", type: "race-共通" }] },
 		{ title: "共通天賦", sheets: [{ name: "共通天賦", type: "common-normal" }] },
 		{ title: "高等天賦", sheets: [
-			{ name: "高等天賦(Lv.5)", type: "common-advanced5" },
-			{ name: "高等天賦(Lv.10)", type: "common-advanced10" },
-			{ name: "高等天賦(Lv.15)", type: "common-advanced15" },
-			{ name: "高等天賦(Lv.20)", type: "common-advanced20" },
-		] },
+				{ name: "高等天賦(Lv.5)", type: "common-advanced5" },
+				{ name: "高等天賦(Lv.10)", type: "common-advanced10" },
+				{ name: "高等天賦(Lv.15)", type: "common-advanced15" },
+				{ name: "高等天賦(Lv.20)", type: "common-advanced20" },
+			]
+		},
 	];
 
 	var tabBuilder = new MyPageTabBuilder();
