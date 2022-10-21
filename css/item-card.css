@@ -243,6 +243,14 @@
 .Item-list.gear .blockCell .cost:before { content: "價格"; }
 .Item-list.gear.weapon .property { display: flex; }
 .Item-list.gear.weapon .property .tag { padding: 2px 5px; margin: 0 2px; background: #fbdcdc; }
+.Item-list.gear .legacy-upgrade { width: 100%; border-top: 1px solid; display: flex; align-items: center; }
+.Item-list.gear .legacy-upgrade .lvl    { padding: 3px; width: 40px; text-align: center; }
+.Item-list.gear .legacy-upgrade .cost   { padding: 2px; width: 60px; text-align: center; border-right: 1px solid #ddd; }
+.Item-list.gear .legacy-upgrade .effect { padding: 2px 5px; }
+
+.Item-list.gear.weapon .legacy-upgrade .lvl { background: #ffd1d1; }
+.Item-list.gear.armor .legacy-upgrade .lvl { background: #d1ecff; }
+.Item-list.gear.accessory .legacy-upgrade .lvl { background: #a8d79f; }
 
 .Item-list.gear.upgrade .title { background: #3a4a58; }
 .Item-list.gear.weapon .title { background: #483030; }
@@ -250,3 +258,4 @@
 .Item-list.gear.accessory .title { background: #214618; }
 .Item-list.gear.permanent .title { background: #3b3048; }
 .Item-list.gear.consumable .title { background: #3b3048; }
+.Item-list.gear.legacyFeat .title { background: #3a4a58; }

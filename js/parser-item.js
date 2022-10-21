@@ -6,18 +6,18 @@ function parseGear(itemObj){
 		return typeArr[0];
 	}
 	function getCategoryText(){
-		switch(getCategory()){
-			case "upgrade": return '追加效果';
-			case "weapon": return '武器';
-			case "armor": return '防具';
-			case "accessory": return '裝飾';
-			case "permanent": return '常備品';
-			case "consumable": return '消耗品';
-		}
+		return fmtCategoryTxt(getCategory());
+	}
+	function getRoughCategoty(){
+		if(isWeapon()) return "weapon";
+		if(isArmor()) return "armor";
+		if(isAccessory()) return "accessory";
+		return getCategory();
 	}
 	function getFullCategoryText(){
 		var txtArr = itemObj.type.split('-');
 		txtArr[0] = getCategoryText();
+		if(txtArr[1]) txtArr[1] = fmtCategoryTxt(txtArr[1]);
 		return txtArr.join('-');
 	}
 
@@ -59,9 +59,35 @@ function parseGear(itemObj){
 	function getEquip(){
 		return Array.isArray(itemObj.equip)? itemObj.equip.map(e=>Util.ItemEquip[e]).join('、'): Util.ItemEquip[itemObj.equip]
 	}
-
 	function getEffect(){
 		return Array.isArray(itemObj.effect)? itemObj.effect.join('<br>'): itemObj.effect.replace(/\n/g, '<br>');
+	}
+
+	function isWeapon(){
+		var typeArr = itemObj.type.split('-');
+		return (typeArr.length>=2 && (typeArr[1]=="劍" || typeArr[1]=="槍" || typeArr[1]=="斧" || typeArr[1]=="錘" || typeArr[1]=="射擊" || typeArr[1]=="魔法"))
+	}
+	function isArmor(){
+		var typeArr = itemObj.type.split('-');
+		return (typeArr.length>=2 && (typeArr[1]=="鎧" || typeArr[1]=="盾"))
+	}
+	function isAccessory(){
+		var typeArr = itemObj.type.split('-');
+		return (typeArr.length>=2 && (typeArr[1]=="裝飾"))
+	}
+	function fmtCategoryTxt(txt){
+		switch(txt){
+			case "upgrade": return '追加效果';
+			case "weapon": return '武器';
+			case "armor": return '防具';
+			case "accessory": return '裝飾';
+			case "permanent": return '常備品';
+			case "consumable": return '消耗品';
+			case "legacy": return "神成神器";
+			case "legacyFeat": return "神器能力";
+			case "common": return "共通";
+		}
+		return txt;
 	}
 
 	function getPhyOrMgc(){
@@ -75,7 +101,7 @@ function parseGear(itemObj){
 	}
 
 	var category = getCategory();
-	return `<div class="Item-list Gear ${category}">${buildGearInnerElem(category)}</div>`.fmt();
+	return `<div class="Item-list Gear ${getRoughCategoty()}">${buildGearInnerElem(category)}</div>`.fmt();
 	//-----------------
 
 	function buildGearInnerElem(category){
@@ -99,7 +125,7 @@ function parseGear(itemObj){
 				</div>`);
 			cellArr.push(`<div class="field">${getEffect()}</div>`);
 		}
-		else if(category=="weapon"){
+		else if(category=="weapon" || isWeapon()){
 			cellArr.push(`<div class="blockCell fixWidth" style="width:80px;">
 					<div class="require"><div>${getRequire()}</div></div>
 				</div>`);
@@ -110,10 +136,10 @@ function parseGear(itemObj){
 					<div class="hit ${getPhyOrMgc()} biggerTxt"><div>${getBonusVal(itemObj.hit)}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
-					<div class="dmg ${getPhyOrMgc()} biggerTxt"><div>${itemObj.dmg.map(v => getBonusVal(v)).join('/')}</div></div>
+					<div class="dmg ${getPhyOrMgc()} biggerTxt"><div>${Array.isArray(itemObj.dmg)? itemObj.dmg.map(v => getBonusVal(v)).join('/'): getBonusVal(itemObj.dmg)}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
-					<div class="spd biggerTxt"><div>${itemObj.spd.map(v => getBonusVal(v)).join('/')}</div></div>
+					<div class="spd biggerTxt"><div>${Array.isArray(itemObj.spd)? itemObj.spd.map(v => getBonusVal(v)).join('/'): getBonusVal(itemObj.spd)}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
 					<div class="cost biggerTxt"><div>${getCost()}</div></div>
@@ -123,7 +149,7 @@ function parseGear(itemObj){
 					<div class="field">${getEffect()}</div>
 				</div>`);
 		}
-		else if(category=="armor"){
+		else if(category=="armor" || isArmor()){
 			cellArr.push(`<div class="blockCell fixWidth" style="width:80px;">
 					<div class="require"><div>${getRequire()}</div></div>
 				</div>`);
@@ -149,7 +175,7 @@ function parseGear(itemObj){
 				</div>`);
 			cellArr.push(`<div class="field">${getEffect()}</div>`);
 		}
-		else if(category=="accessory"){
+		else if(category=="accessory" || isAccessory()){
 			cellArr.push(`<div class="blockCell fixWidth">
 					<div class="equip"><div>${getEquip()}</div></div>
 				</div>`);
@@ -166,6 +192,19 @@ function parseGear(itemObj){
 					<div class="cost biggerTxt"><div>${getCost()}</div></div>
 				</div>`);
 			cellArr.push(`<div class="field">${getEffect()}</div>`);
+		}
+		else if(category=="legacyFeat"){
+			cellArr.push(`<div class="field">${getEffect()}</div>`);
+		}
+
+		if(category=="legacy"){
+			for(var upgrade of itemObj.upgrades){
+				cellArr.push(`<div class="legacy-upgrade">
+						<div class="lvl">Lv.${upgrade.lvl}</div>
+						<div class="cost">${upgrade.cost==0? '免費': (upgrade.cost+'G')}</div>
+						<div class="effect">${upgrade.effect}</div>
+					</div>`)
+			}
 		}
 
 
