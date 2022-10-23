@@ -2,7 +2,7 @@ var TALENTS;
 if(!TALENTS) TALENTS = [];
 
 Array.prototype.push.apply(TALENTS, [
-{type:"common-normal",name:"《左右開弓》",phase:["常時"],range:"使用者",target:"使用者",cost:["無"],effect:"常駐效果。當對象［裝備］著1項［用法：單手］（不包含雙單手）的［武器］時，可以再［裝備］1項［用法：單手］（不包含雙單手）的［武器］。［距離］將採用較短的一方，［對象］則採用任意一方。",isLimit:false,isDefault:false},
+{type:"common-normal",name:"《左右開弓》",phase:["常駐"],range:"使用者",target:"使用者",cost:["無"],effect:"常駐效果。當對象［裝備］著1項［用法：單手］（不包含雙單手）的［武器］時，可以再［裝備］1項［用法：單手］（不包含雙單手）的［武器］。［距離］將採用較短的一方，［對象］則採用任意一方。",isLimit:false,isDefault:false},
 {type:"common-normal",name:"《雙手武器集中》",phase:["常駐"],range:"使用者",target:"使用者",cost:["無"],effect:"常駐效果。當對象［裝備］著［用法：雙手］（不包含雙單手］的［道具：武器］時，［主動判定］的達成值+1、［傷害計算］時獲得+2修正。",isLimit:false,isDefault:false},
 {type:"common-normal",name:"《武器熟練》",phase:["常駐"],range:"使用者",target:"使用者",cost:["無"],effect:"常駐效果。對象從［主要稱號］以外［稱號］的［系統］中選擇1項（戰鬥系、泛用系、魔導系），可以無視［限制］來［裝備］該［系統］的［道具：武器］。",isLimit:false,isDefault:false},
 {type:"common-normal",name:"《防具熟練》",phase:["常駐"],range:"使用者",target:"使用者",cost:["無"],effect:"常駐效果。對象從［主要稱號］以外［稱號］的［系統］中選擇1項（戰鬥系、泛用系、魔導系），可以無視［限制］來［裝備］該［系統］的［道具：防具］。",isLimit:false,isDefault:false},

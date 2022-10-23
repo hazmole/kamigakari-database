@@ -31,6 +31,13 @@ function parseTalent(talent){
 	function getEffect(){
 		return Array.isArray(talent.effect)? talent.effect.join('<br>'): talent.effect.replace(/\n/g, '<br>');
 	}
+	function getFmtTarget(){
+		var arr = talent.target.split(/[（）]/);
+		if(arr.length>1){
+			return `${arr[0]}<br>（${arr[1]}）`;
+		}
+		return arr[0];
+	}
 
 	return `
 	<div class="Item-list talent">
@@ -45,7 +52,7 @@ function parseTalent(talent){
 			<div class="range"><div>${talent.range}</div></div>
 		</div>
 		<div class="blockCell fixWidth">
-			<div class="target"><div>${talent.target}</div></div>
+			<div class="target"><div>${getFmtTarget()}</div></div>
 		</div>
 		<div class="blockCell fixWidth">
 			<div class="cost"><div>${talent.cost.join('、')}</div></div>

@@ -7,7 +7,8 @@ const NAVBAR = [
 	{ text: "表職業一覽", url: "identity-list.html" },
 	{ text: "共通天賦一覽", url: "common-talent-list.html" },
 	{ text: "道具一覽", url: "item-list.html" },
-	{ text: "敵人列表", url: "enemy-list.html" },
+	{ text: "天賦搜尋器", url: "search-for-talent.html", style: "background:#40507e;" },
+	{ text: "敵人搜尋器", url: "search-for-enemy.html", style: "background:#40507e;" },
 ]; 
 
 function buildNavBar(){
