@@ -1,7 +1,9 @@
 var Util; // from "js/util.js"
 
-function parseEnemy(obj){
-
+function parseEnemy(obj, mode){
+	function getCategoryText(){
+		return `${Util.CreatureType[obj.type]}-Lv.${obj.level}`;
+	}
 	function getName(){
 		return obj.name.replace(/x/, "×");
 	}
@@ -83,14 +85,33 @@ function parseEnemy(obj){
 		if(rewardObj.value>=5) return 2000 + (rewardObj.value-4)*1000;
 	}
 	//===================
+	function template_listEntry(){
+		return `
+		<div class="Item-list Enemy clickable" data-id="${obj.name}">
+			<div class="level fixWidth singleCell"><div>Lv.${obj.level}</div></div>
+			<div class="title fixWidth">
+				<div class="mainTitle"><div>${getName()}</div></div>
+			</div>
+			<div class="type ${obj.type} fixWidth singleCell">
+				<div class="type-icon"></div>
+				<div class="type-text">${Util.CreatureType[obj.type]}</div>
+			</div>
+		</div>`.fmt();
+	}
 
+	if(mode=="list"){
+		return template_listEntry();
+	}
+
+
+	//===================
 	return `
 <div class="Enemy-Item Item">
 	<div class="ItemHeader">
 		<div class="Enemy-Type ${obj.type}" title="種別：${Util.CreatureType[obj.type]}"></div>
 		<div class="Enemy-Level">Lv.${obj.level}</div>
 		<div class="Enemy-Name">${getName()}</div>
-		<div class="Enemy-ManaReward">靈力獎勵: ${Math.ceil(obj.level/5)}</div>
+		<div class="Enemy-ManaReward">靈紋獎勵: ${Math.ceil(obj.level/5)}</div>
 	</div>
 	
 	<div class="Enemy-Infos">
@@ -186,6 +207,5 @@ function parseEnemy(obj){
 			${getRewards()}
 		</div>
 	</div>
-
 </div>`.fmt();
 }

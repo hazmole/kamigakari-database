@@ -60,6 +60,7 @@
 .Enemy-Item {
 	max-width: 600px;
 	min-width: 300px;
+	margin: 0;
 }
 .Enemy-Level {
 	padding: 5px 7px 0 3px;
@@ -195,6 +196,9 @@
 .Item-list .yellow { background-color:#9b7703; color:white; }
 .Item-list .brown { background-color:#52361b; color:white; }
 
+.Item-list .singleCell { display:flex;align-items:center; }
+.Item-list .singleCell div { text-align:center;flex-grow:1; }
+
 .Item-list .blockCell {
 	display: flex;
 	flex-direction: column;
@@ -247,11 +251,9 @@
 .Item-list.gear .legacy-upgrade .lvl    { padding: 3px; width: 40px; text-align: center; }
 .Item-list.gear .legacy-upgrade .cost   { padding: 2px; width: 60px; text-align: center; border-right: 1px solid #ddd; }
 .Item-list.gear .legacy-upgrade .effect { padding: 2px 5px; }
-
 .Item-list.gear.weapon .legacy-upgrade .lvl { background: #ffd1d1; }
 .Item-list.gear.armor .legacy-upgrade .lvl { background: #d1ecff; }
 .Item-list.gear.accessory .legacy-upgrade .lvl { background: #a8d79f; }
-
 .Item-list.gear.upgrade .title { background: #3a4a58; }
 .Item-list.gear.weapon .title { background: #483030; }
 .Item-list.gear.armor .title { background: #28466a; }
@@ -259,3 +261,27 @@
 .Item-list.gear.permanent .title { background: #3b3048; }
 .Item-list.gear.consumable .title { background: #3b3048; }
 .Item-list.gear.legacyFeat .title { background: #3a4a58; }
+
+.Item-list.enemy:hover, .Item-list.enemy.active { border-color: red; }
+.Item-list.enemy .mainTitle { text-align: left; padding-left:.5rem; }
+.Item-list.enemy .level { width:45px; color:#aaa; background-color: black;}
+.Item-list.enemy .level div { text-align:left; padding:0 .5rem; }
+.Item-list.enemy .type { width:50px; color:#ccc; padding: 0 5px; }
+.Item-list.enemy .type-icon { width:20px; }
+.Item-list.enemy .type-text { width:30px;text-align:left; }
+.Item-list.enemy .type.humanoid { background: #503535; }
+.Item-list.enemy .type.humanoid .type-icon::after { content: url("../img/person.svg"); }
+.Item-list.enemy .type.beast { background: #5a482c; }
+.Item-list.enemy .type.beast .type-icon::after { content: url("../img/wolf-head.svg"); }
+.Item-list.enemy .type.insect { background: #425a1a; }
+.Item-list.enemy .type.insect .type-icon::after { content: url("../img/scarab-beetle.svg"); }
+.Item-list.enemy .type.machine { background: #44494c; }
+.Item-list.enemy .type.machine .type-icon::after { content: url("../img/robot-grab.svg"); }
+.Item-list.enemy .type.plant { background: #2d5a3d; }
+.Item-list.enemy .type.plant .type-icon::after { content: url("../img/sprout.svg"); }
+.Item-list.enemy .type.undead { background: #30424e; }
+.Item-list.enemy .type.undead .type-icon::after { content: url("../img/chewed-skull.svg"); }
+.Item-list.enemy .type.eudemon { background: #50354d; }
+.Item-list.enemy .type.eudemon .type-icon::after { content: url("../img/spiked-dragon-head.svg"); }
+.Item-list.enemy .type.demon { background: #2a305a; }
+.Item-list.enemy .type.demon .type-icon::after { content: url("../img/curled-tentacle.svg"); }

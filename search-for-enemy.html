@@ -18,7 +18,7 @@
 	<script src="./js/windowCtrl.js"></script>
 
 	<script src="./data/enemy-list.js"></script>
-	<script src="./js/enemy-parser.js"></script>
+	<script src="./js/parser-enemy.js"></script>
 	<script src="./js/enemy-searcher.js"></script>
 
 	<script>
@@ -33,9 +33,26 @@
 			WindowCtrl.BlockUI();
 		}
 		function afterSearch(itemList){
-			$("#ItemContainer").empty();
-			$("#ItemContainer").append(itemList.map( item => parseEnemy(item) ).join(""));
+			$("#ItemContainer .List").empty();
+			$("#ItemContainer .List").append(itemList.map( item => parseEnemy(item, 'list') ).join(""));
 			WindowCtrl.UnblockUI();
+
+			$("#ItemContainer .List .Item-list").on("click", function(evt){
+				$("#ItemContainer .List .Item-list").removeClass("active");
+
+				var itemEntryDOM = $(evt.target)
+				while(!itemEntryDOM.hasClass("Item-list")){
+					itemEntryDOM = itemEntryDOM.parent();
+				}
+				itemEntryDOM.addClass("active");
+				var dataId = itemEntryDOM.attr("data-id");
+				var itemObj = itemList.find( obj => obj.name == dataId );
+
+				$("#ItemContainer .Display").empty();
+				$("#ItemContainer .Display").append(parseEnemy(itemObj, 'page'));
+			});
+
+			$("#ItemContainer .List .Item-list").first().click();
 		}
 
 		window.onload = function(){
@@ -52,7 +69,10 @@
 			<div id="FrameContentHeader">
 				<div id="SearchPanel"></div>
 			</div>
-			<div id="ItemContainer" class="EnemyContainer"></div>
+			<div id="ItemContainer">
+				<div class="List"></div>
+				<div class="Display"></div>
+			</div>
 		</div>
 	</div>
 
