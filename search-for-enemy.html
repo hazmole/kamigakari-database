@@ -19,7 +19,7 @@
 
 	<script src="./data/enemy-list.js"></script>
 	<script src="./js/parser-enemy.js"></script>
-	<script src="./js/enemy-searcher.js"></script>
+	<script src="./js/searcher-enemy.js"></script>
 
 	<script>
 		function init(){
@@ -33,11 +33,14 @@
 			WindowCtrl.BlockUI();
 		}
 		function afterSearch(itemList){
+			// Show ItemList
 			$("#ItemContainer .List").empty();
 			$("#ItemContainer .List").append(itemList.map( item => parseEnemy(item, 'list') ).join(""));
+			if(itemList.length<=0)
+				$("#ItemContainer .List").append("<div style='text-align:center;'>找不到結果</div>");
 			WindowCtrl.UnblockUI();
 
-			var resultCount = $("#ItemContainer .List .Item-list").length;
+			// Append ClickEvent Listener
 			$("#ItemContainer .List .Item-list").on("click", function(evt){
 				$("#ItemContainer .List .Item-list").removeClass("active");
 
@@ -49,16 +52,47 @@
 				var dataId = itemEntryDOM.attr("data-id");
 				var itemObj = itemList.find( obj => obj.name == dataId );
 
-				$("#ItemContainer .Display").empty();
-				$("#ItemContainer .Display").append(parseEnemy(itemObj, 'page'));
+				renderInfoCard(itemObj)
+				updatePageId(itemObj.name);
 			});
 
-			if(resultCount>0){
-				$("#ItemContainer .List .Item-list").first().click();
+			// Render InfoCard
+			var enemyName = getCurrentPageId();
+			var enemyObj = getEnemyObjByName(enemyName);
+			var enemyItemDOM = $(`.Item-list[data-id="${enemyName}"]`);
+			var isItemInList = enemyItemDOM.length > 0;
+			if(enemyObj!=null && isItemInList){
+				enemyItemDOM.click();
+				console.log(enemyItemDOM[0])
+				enemyItemDOM[0].scrollIntoView({ block:"center" });
 			} else {
-				$("#ItemContainer .List").append("<div style='text-align:center;'>找不到結果</div>");
+				$("#ItemContainer .List .Item-list").first().click();
 			}
 		}
+
+		function renderInfoCard(itemObj){
+			$("#ItemContainer .Display").empty();
+			$("#ItemContainer .Display").append(parseEnemy(itemObj, 'page'));
+		}
+
+		function getCurrentPageId(){
+			const urlParams = new URLSearchParams(window.location.search);
+			const currentPageId = urlParams.get('id');
+			if(currentPageId==null) return '';
+			return currentPageId;
+		}
+		function updatePageId(name){
+			const urlParams = new URLSearchParams(window.location.search);
+			const path = window.location.pathname;
+			urlParams.set('id', name);
+			window.history.pushState({}, '', path+`?${urlParams.toString()}`);
+		}
+		function getEnemyObjByName(name){
+			if(!name) return null;
+			var enemyObj = ENEMY_LIST.find( obj => obj.name == name);
+			return enemyObj;
+		}
+
 
 		window.onload = function(){
 			init();
