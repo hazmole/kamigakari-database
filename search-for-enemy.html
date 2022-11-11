@@ -37,6 +37,7 @@
 			$("#ItemContainer .List").append(itemList.map( item => parseEnemy(item, 'list') ).join(""));
 			WindowCtrl.UnblockUI();
 
+			var resultCount = $("#ItemContainer .List .Item-list").length;
 			$("#ItemContainer .List .Item-list").on("click", function(evt){
 				$("#ItemContainer .List .Item-list").removeClass("active");
 
@@ -52,7 +53,11 @@
 				$("#ItemContainer .Display").append(parseEnemy(itemObj, 'page'));
 			});
 
-			$("#ItemContainer .List .Item-list").first().click();
+			if(resultCount>0){
+				$("#ItemContainer .List .Item-list").first().click();
+			} else {
+				$("#ItemContainer .List").append("<div style='text-align:center;'>找不到結果</div>");
+			}
 		}
 
 		window.onload = function(){
@@ -70,7 +75,7 @@
 				<div id="SearchPanel"></div>
 			</div>
 			<div id="ItemContainer">
-				<div class="List"></div>
+				<div class="List" style="width:300px"></div>
 				<div class="Display"></div>
 			</div>
 		</div>
