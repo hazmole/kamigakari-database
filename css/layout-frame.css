@@ -1,14 +1,13 @@
 :root {
   --color-titleBack: #4A593D;
   --color-ContentBack: #D9CD90;
+  --color-NavBtn:  #404040;
   
-  --color-Black: #1C1C1C;
-  --color-Gray-darker:  #404040;
-  --color-Gray-lighter: #d3d3d3;
-  --color-Green: #4A593D;
-  --color-lightBrown: #a39382;
+  --color-PageTab: #d3d3d3;
+  --color-PageTab-Active: #2a75ff;
+  --color-Border: #404040;
 
-  --color-Blue: #2a75ff;
+  --color-Black: #1C1C1C;
 }
 
 @font-face {
@@ -119,7 +118,7 @@ body {
   padding: 5px 20px;
   margin-bottom: 10px;
   color: white;
-  background: var(--color-Gray-darker);
+  background: var(--color-NavBtn);
 }
 
 @media only screen and (max-width: 650px) {
@@ -133,13 +132,13 @@ body {
 /*==============
  * Page Tab Object */
 #FrameContentHeader .PageTab {
-  background: var(--color-Gray-lighter);
+  background: var(--color-PageTab);
   padding: 5px 10px;
   margin: 0 5px 3px 5px;
   border-radius: 2px;
   font-size: 14px;
 }
-#FrameContentHeader .PageTab.active { background:var(--color-Blue); color:white; }
+#FrameContentHeader .PageTab.active { background:var(--color-PageTab-Active); color:white; }
 .Page {
   margin: 1rem;
   width: 100%;
@@ -151,14 +150,14 @@ body {
   font-weight: bold;
   padding:2px 10px;
   margin: 0 2px;
-  background: var(--color-Gray-lighter);
+  background: var(--color-PageTab);
   border-width: 1 1 0 1;
-  border-color: var(--color-Gray-darker);
+  border-color: var(--color-Border);
   border-style: solid;
   border-radius: 5px 5px 0 0;
 }
-.Subtab .Subtab-btn.active { background: var(--color-Blue); color: white; }
+.Subtab .Subtab-btn.active { background: var(--color-PageTab-Active); color: white; }
 .Subtab .Subtab-baseline { 
   margin: 0;
-  border-top: solid var(--color-Gray-darker) 1px;
+  border-top: solid var(--color-Border) 1px;
 }

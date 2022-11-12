@@ -41,9 +41,9 @@ function parseTalent(talent){
 
 	return `
 	<div class="Item-list talent">
-		<div class="title fixWidth">
-			<div class="category">${getCategoryText()}</div>
-			<div class="mainTitle"><div>${getName()}</div></div>
+		<div class="titleCell fixWidth">
+			<div class="tag">${getCategoryText()}</div>
+			<div class="title"><div>${getName()}</div></div>
 		</div>
 		<div class="blockCell fixWidth">
 			<div class="phase"><div>${talent.phase.join('/')}</div></div>

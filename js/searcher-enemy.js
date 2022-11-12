@@ -16,7 +16,7 @@ EnemySearchCtrl.advancedCfg = [
   },
   {
     field: 'type',
-    title: '種別',
+    title: '種類',
     type: 'selection',
     options: [
       { text: '人型', value: 'humanoid' },

@@ -1,6 +1,6 @@
 /***********
  * Require: 
- *   "data/enemy-list.js": var ENEMY_LIST
+ *   "data/talents-*.js": var TALENTS
  *   "js/mySearcher.js": class MySearcher
  */
 

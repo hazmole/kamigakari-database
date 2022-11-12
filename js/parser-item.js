@@ -109,9 +109,9 @@ function parseGear(itemObj){
 
 		// Title
 		cellArr.push(`
-			<div class="title fixWidth">
-				<div class="category">${getFullCategoryText()}</div>
-				<div class="mainTitle"><div>${getName()}</div></div>
+			<div class="titleCell fixWidth">
+				<div class="tag">${getFullCategoryText()}</div>
+				<div class="title"><div>${getName()}</div></div>
 			</div>`);
 
 		if(category=="upgrade"){
