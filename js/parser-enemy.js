@@ -72,8 +72,13 @@ function parseEnemy(obj, mode){
 		
 		var rewardContent = "無";
 		if(rewardObj.content!=""){
-			var cost = rewardObj.cost? rewardObj.cost: calcRewardDefaultCost(rewardObj);
-			rewardContent = `${rewardObj.content} ／ ${rewardObj.effect}：${cost}G （效果值: ${rewardObj.value}）`;
+			if(rewardObj.value!=null){
+				var cost = rewardObj.cost? rewardObj.cost: calcRewardDefaultCost(rewardObj);
+				rewardContent = `${rewardObj.content} ／ ${rewardObj.effect}：${cost}G （效果值: ${rewardObj.value}）`;
+			}
+			else {
+				rewardContent = `${rewardObj.content} ／ ${rewardObj.effect}`;
+			}
 		}
 		return `
 		<div class="rewardEntry row">
