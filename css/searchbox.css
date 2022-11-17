@@ -1,3 +1,15 @@
+:root {
+  --color-AdvSearchBtn: #707070;
+  --color-SearchBox-Bg: #fff;
+
+  --color-Select-Btn: #ccc;
+  --color-Select-Btn-Yes: #2a75ff;
+  --color-Select-Btn-No:  #bf1717;
+
+  --color-Range-Text: #80d0ff;
+  --color-Range-Text: #80d0ff;
+}
+
 /*==============
  * SearchPanel */
 #SearchPanel { width: 100%; }
@@ -8,7 +20,7 @@
 }
 
 .AdvancedSearchBtn {
-  background: #707070; color: white;
+  background: var(--color-AdvSearchBtn); color: white;
   width: 90px;
   border: none;
   flex-shrink: 0;
@@ -17,7 +29,6 @@
 form.SearchBox {
   position: relative;
   max-width: 300px;
-  background: #bd5757;
   border-radius: .5rem;
   margin: 0;
   flex-grow: 1;
@@ -26,7 +37,7 @@ form.SearchBox {
   outline: 0;
   width: 100%;
   height: 2rem;
-  background: #fff;
+  background: var(--color-SearchBox-Bg);
   padding: 0 1rem;
   border: none;
   border-radius: 0 .5rem .5rem 0;
@@ -73,17 +84,17 @@ form.SearchBox {
   margin: 0 2px;
   border: 1px solid #666;
   border-radius: 5px;
-  background: #ccc;
+  background: var(--color-Select-Btn);
 
   cursor: pointer;
 }
-.AdvancedOptionEntry .innerEntry .select-item.yes { background:#2a75ff; color:white }
-.AdvancedOptionEntry .innerEntry .select-item.no {  background:#bf1717; color:white; }
+.AdvancedOptionEntry .innerEntry .select-item.yes { background:var(--color-Select-Btn-Yes); color:white }
+.AdvancedOptionEntry .innerEntry .select-item.no {  background:var(--color-Select-Btn-No);  color:white; }
 
 /* Type: Dual-Range */
 .dual-range-item { display: flex; width: 100%; max-width: 500px; }
 .dual-range-item .range-number {
-  color: #80d0ff;
+  color: var(--color-Range-Text);
   padding: 5px;
   width: 40px;
   text-align: center;

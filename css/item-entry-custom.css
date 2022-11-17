@@ -1,0 +1,103 @@
+/*------------------
+  Here you can write down those Customize CSS
+ ------------------*/
+/* Talent */
+.Item-list.talent .titleCell .title { text-align: left; padding-left:.5rem; }
+.Item-list.talent .blockCell .phase:before  { content: "時機"; }
+.Item-list.talent .blockCell .range:before  { content: "距離"; }
+.Item-list.talent .blockCell .target:before { content: "對象"; }
+.Item-list.talent .blockCell .cost:before   { content: "代價"; }
+
+/* Gear */
+.Item-list.gear { margin: 0; }
+.Item-list.gear .titleCell .title { text-align: left; padding-left:.5rem; }
+.Item-list.gear .blockCell .value:before { content: "效果值"; }
+.Item-list.gear .blockCell .require:before { content: "限制"; }
+.Item-list.gear .blockCell .equip:before { content: "用法"; }
+.Item-list.gear .blockCell .hit.phy:before { content: "命中"; }
+.Item-list.gear .blockCell .hit.mgc:before { content: "發動"; }
+.Item-list.gear .blockCell .dmg.phy:before { content: "物Ｄ"; }
+.Item-list.gear .blockCell .dmg.mgc:before { content: "魔Ｄ"; }
+.Item-list.gear .blockCell .amr.phy:before { content: "裝甲"; }
+.Item-list.gear .blockCell .amr.mgc:before { content: "結界"; }
+.Item-list.gear .blockCell .evd:before { content: "迴避"; }
+.Item-list.gear .blockCell .spd:before { content: "行動值"; }
+.Item-list.gear .blockCell .usage:before { content: "用途"; }
+.Item-list.gear .blockCell .cost:before { content: "價格"; }
+.Item-list.gear.weapon .property { display: flex; }
+.Item-list.gear.weapon .property .tag { padding: 2px 5px; margin: 0 2px; background: #fbdcdc; }
+.Item-list.gear .legacy-upgrade { width: 100%; border-top: 1px solid; display: flex; align-items: center; }
+.Item-list.gear .legacy-upgrade .lvl    { padding: 3px; width: 40px; text-align: center; }
+.Item-list.gear .legacy-upgrade .cost   { padding: 2px; width: 60px; text-align: center; border-right: 1px solid #ddd; }
+.Item-list.gear .legacy-upgrade .effect { padding: 2px 5px; }
+.Item-list.gear.weapon .legacy-upgrade .lvl { background: #ffd1d1; }
+.Item-list.gear.armor .legacy-upgrade .lvl { background: #d1ecff; }
+.Item-list.gear.accessory .legacy-upgrade .lvl { background: #a8d79f; }
+
+.Item-list.gear.upgrade .titleCell { background: #3a4a58; }
+.Item-list.gear.weapon .titleCell { background: #483030; }
+.Item-list.gear.armor .titleCell { background: #28466a; }
+.Item-list.gear.accessory .titleCell { background: #214618; }
+.Item-list.gear.permanent .titleCell { background: #3b3048; }
+.Item-list.gear.consumable .titleCell { background: #3b3048; }
+.Item-list.gear.legacyFeat .titleCell { background: #3a4a58; }
+
+
+/* Enemy */
+.Item-list.enemy:hover,
+.Item-list.enemy.active { border-color: red; }
+.Item-list.enemy .titleCell { flex-grow:1; }
+.Item-list.enemy .titleCell .title { text-align: left; padding-left:.5rem; }
+.Item-list.enemy .level { width:45px; color:#aaa; background-color: black;}
+.Item-list.enemy .level > div { text-align:left; padding:0 .5rem; }
+.Item-list.enemy .type { width:50px; color:#ccc; padding: 0 5px; }
+.Item-list.enemy .type-icon { width:20px; }
+.Item-list.enemy .type-text { width:30px;text-align:left; }
+.Item-list.enemy .type.humanoid { background: #503535; }
+.Item-list.enemy .type.humanoid .type-icon::after { content: url("../img/person.svg"); }
+.Item-list.enemy .type.beast { background: #5a482c; }
+.Item-list.enemy .type.beast .type-icon::after { content: url("../img/wolf-head.svg"); }
+.Item-list.enemy .type.insect { background: #425a1a; }
+.Item-list.enemy .type.insect .type-icon::after { content: url("../img/scarab-beetle.svg"); }
+.Item-list.enemy .type.machine { background: #44494c; }
+.Item-list.enemy .type.machine .type-icon::after { content: url("../img/robot-grab.svg"); }
+.Item-list.enemy .type.plant { background: #2d5a3d; }
+.Item-list.enemy .type.plant .type-icon::after { content: url("../img/sprout.svg"); }
+.Item-list.enemy .type.undead { background: #30424e; }
+.Item-list.enemy .type.undead .type-icon::after { content: url("../img/chewed-skull.svg"); }
+.Item-list.enemy .type.eudemon { background: #50354d; }
+.Item-list.enemy .type.eudemon .type-icon::after { content: url("../img/spiked-dragon-head.svg"); }
+.Item-list.enemy .type.demon { background: #2a305a; }
+.Item-list.enemy .type.demon .type-icon::after { content: url("../img/curled-tentacle.svg"); }
+
+
+/* Enemy-Card */
+.Item-card.enemy {  min-width: 200px; max-width: 600px; margin: 0; }
+.Item-card.enemy .header .type  { padding: 0 1em; font-size: 12px; }
+.Item-card.enemy .header .level { padding: 0 .5em; color: #bebfbb; background:#2a305a; }
+.Item-card.enemy .Enemy-Infos { border-bottom:1px solid white; }
+.Item-card.enemy .Enemy-Actions,
+.Item-card.enemy .Enemy-Rewards { border-top:3px double #666; }
+.Item-card.enemy .Enemy-States .rowBar { align-items: stretch; }
+.Item-card.enemy .Enemy-States .rowBar .Enemy-States-Title { width:60px; background-color: #bdbdbd; text-align: center; padding: 20px 0; }
+.Item-card.enemy .Enemy-States .blockCell { width: 59px; border-left: 1px solid white; text-align:center; }
+.Item-card.enemy .Enemy-States .blockCell .subtitle { font-size:12px; padding:2px 0; color:#dee7e1; }
+.Item-card.enemy .Enemy-States .blockCell .subtitle.green {}
+.Enemy-States .blockCell .subtitle.green  { background: #294629; }
+.Enemy-States .blockCell .subtitle.purple { background: #502885; }
+.Enemy-States .blockCell .subtitle.red    { background: #7a1010; }
+.Enemy-States .blockCell .subtitle.blue   { background: #26397e; }
+.Enemy-States .blockCell .mainVal        { margin: 2px 0 1px 0; font-size: 16px; }
+.Enemy-States .blockCell .subVal         { margin-bottom: 2px; font-size: 10px; }
+.Enemy-States .blockCell .doubleLayerVal { padding: 10px 0px; font-size: 16px; }
+
+.Item-card.enemy .talentEntry:not(:last-child) { border-bottom: 1px solid #c5c5c5; }
+.Item-card.enemy .talentEntry .title {   width:140px; text-align:center; background:#bdbdbd; font-size:13px; padding:2px 0px; word-break:keep-all; }
+.Item-card.enemy .talentEntry .tags { display: flex; gap:1px; }
+.Item-card.enemy .talentEntry .tags .tag { padding: 2px 5px; margin-left:2px; background:#efefef; font-size:12px; }
+.Item-card.enemy .talentEntry .effect {  width: 100%; padding: 5px; }
+
+.Item-card.enemy .rewardEntry { align-items: center; }
+.Item-card.enemy .rewardEntry:not(:last-child) { border-bottom: 1px solid #c5c5c5; }
+.Item-card.enemy .rewardEntry .range { width: 45px; text-align: center; background: #ddd; padding:3px 2px; }
+.Item-card.enemy .rewardEntry .content { padding: 0px 5px;}
