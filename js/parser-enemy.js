@@ -30,6 +30,7 @@ function parseEnemy(obj, mode){
 	}
 	function getWeakness(){
 		if(!obj.info?.weakness || obj.info.weakness.length==0) return "無";
+		if(obj.info.weakness[0]=="all") return "全屬性";
 		return obj.info.weakness.map( w => `［${Util.Elemental[w]}］` ).join("");
 	}
 	function getState(key){
