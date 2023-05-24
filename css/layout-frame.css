@@ -2,6 +2,7 @@
   --color-titleBack: #4A593D;
   --color-ContentBack: #D9CD90;
   --color-NavBtn:  #404040;
+  --color-NavFolder: #40507e;
   
   --color-PageTab: #d3d3d3;
   --color-PageTab-Active: #2a75ff;
@@ -120,6 +121,13 @@ body {
   color: white;
   background: var(--color-NavBtn);
 }
+#FrameNavbarInner .navfolder {
+  text-align: center;
+  padding: 5px 5px;
+  margin-bottom: 10px;
+  color: white;
+  background: var(--color-NavFolder);
+}
 
 @media only screen and (max-width: 650px) {
   #FrameTitle { font-size: 40px; height: 52px; }
@@ -161,3 +169,15 @@ body {
   margin: 0;
   border-top: solid var(--color-Border) 1px;
 }
+
+.arrow {
+  border: solid white;
+  border-width: 0px 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  margin: 2px;
+}
+.arrow.right { transform: rotate(-45deg); }
+.arrow.left { transform: rotate(135deg); }
+.arrow.up { transform: rotate(-135deg);}
+.arrow.down { transform: rotate(45deg);}
