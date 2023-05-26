@@ -56,7 +56,6 @@ function buildNavBar(){
 	var currentPageObj = navObjList.find( obj => obj.url == currentPageUrl );
 	$(".navitem[data-dependkey]").hide();
 	if(currentPageObj!=null && currentPageObj.toggleDepend!=null){
-		console.log(currentPageObj.toggleDepend)
 		$(`.navitem[data-dependkey=${currentPageObj.toggleDepend}]`).show();
 	}	
 
