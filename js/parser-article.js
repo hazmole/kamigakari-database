@@ -76,5 +76,5 @@ function parseArticle(doc){
 
 function parseQuickNav(doc){
 	var arr = doc.map( obj => obj.title ).filter( txt => txt!=null );
-	return arr.map(txt=>`<div><a href="#tag_${txt}">${txt}</div>`);
+	return arr.map(txt=>`<div style="margin-bottom:5px;handleEntry"><a href="#tag_${txt}">${txt}</div>`);
 }
