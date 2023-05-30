@@ -1,0 +1,55 @@
+<html>
+<head>
+	<title>神我狩 - 世界的情勢</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:title" content="神我狩資料站 - 世界的情勢">
+	<meta property="og:type" content="website">
+	<link rel="stylesheet" href="./css/global.css">
+	<link rel="stylesheet" href="./css/layout-frame.css">
+	<link rel="stylesheet" href="./css/loading.css">
+	<link rel="stylesheet" href="./css/article.css">
+	<style>
+		h2,h3,h4 { margin-bottom: 0; }
+		h3 { margin:1.5rem 0 5px 0; }
+		.Articles { margin:1rem; }
+		.QuickNav { margin:1rem; position:fixed; }
+		.QuickNav a { font-size: 0.8em; color: #360909; }
+		.info { background-color: white; border: 1px solid; padding: 5px 25px 5px 5px; max-width: 50rem; margin-bottom: 1rem; }
+		.info p:first-child, h3+p, h4+p { margin-top:0; }
+		.info p:last-child { margin-bottom:0; }
+	</style>
+
+	<script src="./js/jquery-3.6.0.min.js"></script>
+	<script src="./js/authenticator.js"></script>
+	<script src="./js/util.js"></script>
+	<script src="./js/navbar.js"></script>
+	<script src="./js/windowCtrl.js"></script>
+
+	<script src="./data/world/world.js"></script>
+	<script src="./js/parser-article.js"></script>
+	<script>
+		window.onload = function(){
+			var secArr = parseArticle(DOC);
+			var navArr = parseQuickNav(DOC);
+			$(".Articles").html(secArr.join(""));
+			$(".QuickNav").html(navArr.join(""));
+		}
+	</script>
+</head>
+<body>
+	<div id="FrameTitle">神我狩 - 世界的情勢</div>
+	<div id="FrameOuter">
+		<div id="FrameNavbar"><div id="navbar"></div></div>
+		<div id="FrameContent">
+			<div id="FrameContentHeader"></div>
+			<div id="ItemContainer">
+				<div class="Articles"></div>
+				<div>
+					<div class="QuickNav"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>

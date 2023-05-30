@@ -3,7 +3,10 @@ $(document).ready(buildNavBar);
 const NAVBAR = [
 	{ type:"link", text: "首頁", url: "index.html", style: "background:var(--color-titleBack);" },
 	{ type:"folder", text: "世界觀", folderKey: "world-setting", list: [
-			{ type:"link", text: "基本世界觀", url: "world-basic.html" },
+			{ type:"link", text: "基本設定", url: "world-1-basic.html" },
+			{ type:"link", text: "世界的情勢", url: "world-2-world.html" },
+			{ type:"link", text: "超常存在組織", url: "world-3-organization.html" },
+			//{ type:"link", text: "〈神魂〉擴充", url: "" },
 		]
 	},
 	{ type:"folder", text: "玩家資料", folderKey: "player-data", list: [

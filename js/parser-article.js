@@ -23,7 +23,9 @@ function parseArticle(doc){
 			for(var entry of item.entry){
 				entryList.push(handleEntry(entry, depth+1));
 			}
-			return entryList.join('');
+			var section = entryList.join('');
+			if(depth==1) return `<div class="section">${section}</div>`;
+			else 				 return section;
 		}
 		
 		// List
@@ -73,5 +75,6 @@ function parseArticle(doc){
 }
 
 function parseQuickNav(doc){
-	return doc.map( obj => obj.title ).filter( txt => txt!=null );
+	var arr = doc.map( obj => obj.title ).filter( txt => txt!=null );
+	return arr.map(txt=>`<div><a href="#tag_${txt}">${txt}</div>`);
 }
