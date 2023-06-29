@@ -83,6 +83,7 @@ function parseGear(itemObj){
 			case "accessory": return '裝飾';
 			case "permanent": return '常備品';
 			case "consumable": return '消耗品';
+			case "pack": return "套裝";
 			case "legacy": return "神成神器";
 			case "legacyFeat": return "神器能力";
 			case "common": return "共通";
@@ -192,6 +193,11 @@ function parseGear(itemObj){
 					<div class="cost biggerTxt"><div>${getCost()}</div></div>
 				</div>`);
 			cellArr.push(`<div class="field">${getEffect()}</div>`);
+		}
+		else if(category=="pack"){
+			var p = `常備品: ${itemObj.permanent.join("、")}<br>`;
+			var c = `消耗品: ${itemObj.consumable.join("、")}<br>`;
+			cellArr.push(`<div class="field">${p+c}</div>`);
 		}
 		else if(category=="legacyFeat"){
 			cellArr.push(`<div class="field">${getEffect()}</div>`);

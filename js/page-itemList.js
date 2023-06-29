@@ -57,6 +57,7 @@ function init(){
 		},
 		{ title:"常備品", key:'常備' },
 		{ title:"消耗品", key:'消耗' },
+		{ title:"探索者套裝", key:'套裝' },
 		{ title:"神器能力", key:'legacyFeat', subpageArr: [
 				{ title: "共通", key:'common' },
 				{ title: "武器", key:'weapon' },
@@ -112,6 +113,7 @@ function BuildItemPage(pageObj){
 		switch(pageObj.key){
 			case "常備": typeKey = 'permanent'; break;
 			case "消耗": typeKey = 'consumable'; break;
+			case "套裝": typeKey = 'pack'; break;
 		}
 		return `<div id="Gear-Container">${getItemElemList(typeKey)}</div>`;
 	}
