@@ -95,6 +95,16 @@ function parseGear(itemObj){
 		if(itemObj.type.indexOf('魔法')>=0) return 'mgc';
 		return 'phy';
 	}
+	function getDamage(){
+		const arr = [];
+		if (Array.isArray(itemObj.dmg)) arr.push(...itemObj.dmg);
+		else arr.push(item.dmg);
+
+		if (itemObj.isFirearm) {
+			return arr.map(v => `(${v})`).join('/');
+		}
+		return arr.map(v => getBonusVal(v)).join('/');
+	}
 	function getBonusVal(val){
 		if(val==0) return '-';
 		if(val>0) return '+'+val;
@@ -137,7 +147,7 @@ function parseGear(itemObj){
 					<div class="hit ${getPhyOrMgc()} biggerTxt"><div>${getBonusVal(itemObj.hit)}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
-					<div class="dmg ${getPhyOrMgc()} biggerTxt"><div>${Array.isArray(itemObj.dmg)? itemObj.dmg.map(v => getBonusVal(v)).join('/'): getBonusVal(itemObj.dmg)}</div></div>
+					<div class="dmg ${getPhyOrMgc()} biggerTxt"><div>${getDamage()}</div></div>
 				</div>`);
 			cellArr.push(`<div class="blockCell fixWidth">
 					<div class="spd biggerTxt"><div>${Array.isArray(itemObj.spd)? itemObj.spd.map(v => getBonusVal(v)).join('/'): getBonusVal(itemObj.spd)}</div></div>
