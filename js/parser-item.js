@@ -98,7 +98,7 @@ function parseGear(itemObj){
 	function getDamage(){
 		const arr = [];
 		if (Array.isArray(itemObj.dmg)) arr.push(...itemObj.dmg);
-		else arr.push(item.dmg);
+		else arr.push(itemObj.dmg);
 
 		if (itemObj.isFirearm) {
 			return arr.map(v => `(${v})`).join('/');
